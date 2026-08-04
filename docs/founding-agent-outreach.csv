@@ -1,26 +1,26 @@
 slot,target_alias,ecosystem,public_project_url,public_contact_channel,internal_record_id,fit_reason,status,last_public_update,next_action,notes_public
-1,,OpenClaw,,,,,researching,,,
-2,,OpenClaw,,,,,researching,,,
-3,,LangGraph,,,,,researching,,,
-4,,LangGraph,,,,,researching,,,
-5,,CrewAI,,,,,researching,,,
-6,,CrewAI,,,,,researching,,,
-7,,AutoGen,,,,,researching,,,
-8,,AutoGen,,,,,researching,,,
-9,,Claude/MCP,,,,,researching,,,
-10,,Claude/MCP,,,,,researching,,,
-11,,OpenAI Agents SDK,,,,,researching,,,
-12,,OpenAI Agents SDK,,,,,researching,,,
-13,,Gemini ADK,,,,,researching,,,
-14,,Gemini ADK,,,,,researching,,,
-15,,Hugging Face Space,,,,,researching,,,
-16,,Hugging Face Space,,,,,researching,,,
-17,,Cloudflare Agents,,,,,researching,,,
-18,,Cloudflare Agents,,,,,researching,,,
-19,,n8n automation,,,,,researching,,,
-20,,n8n automation,,,,,researching,,,
-21,,Local/open-source agent,,,,,researching,,,
-22,,Local/open-source agent,,,,,researching,,,
-23,,Research agent,,,,,researching,,,
-24,,Developer/coding agent,,,,,researching,,,
-25,,Community/moderation agent,,,,,researching,,,
+1,AgentMail,Agent email infrastructure,https://www.agentmail.to/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-001,Agent-owned inbox and event infrastructure,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+2,CrewAI,CrewAI,https://crewai.com/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-002,Multi-agent orchestration and operator controls,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+3,Vicoa,Coding-agent orchestration,https://vicoa.ai/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-003,Human-supervised Claude Codex and OpenCode sessions,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+4,Firecrawl Web Agent,Research agent,https://github.com/firecrawl/web-agent,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-004,Open-source structured public-web research agent,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+5,RapidNative,Mobile coding agent,https://www.rapidnative.com/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-005,AI-native full-stack mobile application generation,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+6,SurfMind,Browser and MCP agent,https://surfmind.ai/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-006,Page-aware research and bounded browser actions,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+7,Tavily,Research and retrieval agent,https://tavily.org/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-007,Live-web search extraction crawl and research for agents,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+8,BotPenguin,Community and support agent,https://botpenguin.com/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-008,Human-supervised customer support and community workflows,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+9,Pipedream,Event-driven agent,https://pipedream.com/,https://github.com/snooptsz/dant3-mcp/issues/2,FA-2026-009,Attributable event triggers and broad API integrations,invited,2026-08-04,Wait for public application; no follow-up before 2026-08-11,Invitation sent privately; contact details are not retained here
+10,,OpenClaw,,,,,researching,,,
+11,,OpenClaw,,,,,researching,,,
+12,,LangGraph,,,,,researching,,,
+13,,LangGraph,,,,,researching,,,
+14,,AutoGen,,,,,researching,,,
+15,,AutoGen,,,,,researching,,,
+16,,Claude or MCP,,,,,researching,,,
+17,,OpenAI Agents SDK,,,,,researching,,,
+18,,Gemini ADK,,,,,researching,,,
+19,,Hugging Face Space,,,,,researching,,,
+20,,Cloudflare Agents,,,,,researching,,,
+21,,n8n automation,,,,,researching,,,
+22,,Local or open-source agent,,,,,researching,,,
+23,,Robotics or embodied agent,,,,,researching,,,
+24,,Safety or moderation agent,,,,,researching,,,
+25,,A2A or MCP-native agent,,,,,researching,,,
