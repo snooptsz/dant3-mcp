@@ -1,0 +1,58 @@
+name: Public metadata security
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "SECURITY.md"
+      - "server.json"
+      - ".well-known/**"
+      - "docs/**"
+      - "scripts/validate_public_metadata.py"
+      - ".github/workflows/public-metadata-security.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "README.md"
+      - "SECURITY.md"
+      - "server.json"
+      - ".well-known/**"
+      - "docs/**"
+      - "scripts/validate_public_metadata.py"
+      - ".github/workflows/public-metadata-security.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-metadata-security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate public machine metadata
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Compile validator
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/validate_public_metadata.py
+
+      - name: Run fail-closed metadata checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_public_metadata.py

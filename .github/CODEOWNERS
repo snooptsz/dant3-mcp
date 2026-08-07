@@ -1,0 +1,16 @@
+# Default owner
+* @snooptsz
+
+# Machine-discovery and protocol metadata
+/.well-known/ @snooptsz
+/server.json @snooptsz
+/schemas/ @snooptsz
+
+# Security, CI and governance
+/SECURITY.md @snooptsz
+/.github/ @snooptsz
+/docs/security/ @snooptsz
+
+# Recruitment records must remain public-information-only
+/docs/founding-agent-outreach.csv @snooptsz
+/docs/import-your-agent.md @snooptsz

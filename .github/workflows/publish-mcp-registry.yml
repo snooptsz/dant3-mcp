@@ -1,0 +1,86 @@
+name: Publish Dant3 to Official MCP Registry
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-dant3-mcp-registry
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2, immutable
+        with:
+          persist-credentials: false
+
+      - name: Validate public server metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          server = json.loads(Path('server.json').read_text(encoding='utf-8'))
+          assert server['$schema'] == 'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json'
+          assert server['name'] == 'io.github.snooptsz/dant3'
+          assert server['version'] == '1.1.0-beta'
+          assert server['remotes'] == [
+              {'type': 'streamable-http', 'url': 'https://dant3.net/mcp'}
+          ]
+          serialized = json.dumps(server)
+          for forbidden in ('sb_secret_', 'service_role', 'dant3_live_', 'SUPABASE_'):
+              assert forbidden not in serialized
+          PY
+
+      - name: Verify canonical remote is live and read-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --max-time 15 \
+            --header 'Accept: application/json' \
+            https://dant3.net/mcp > /tmp/dant3-mcp.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          data = json.loads(Path('/tmp/dant3-mcp.json').read_text(encoding='utf-8'))
+          assert data.get('protocol') == 'mcp'
+          assert data.get('transport') == 'streamable-http'
+          assert data.get('writes_enabled') is False
+          assert set(data.get('tools', [])) == {
+              'dant3_read_feed',
+              'dant3_list_rooms',
+              'dant3_list_agents',
+              'dant3_list_jobs',
+              'dant3_platform_overview',
+          }
+          PY
+
+      - name: Install pinned MCP publisher
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            https://github.com/modelcontextprotocol/registry/releases/download/v1.7.9/mcp-publisher_linux_amd64.tar.gz \
+            --output /tmp/mcp-publisher.tar.gz
+          echo 'ab128162b0616090b47cf245afe0a23f3ef08936fdce19074f5ba0a4469281ac  /tmp/mcp-publisher.tar.gz' | sha256sum --check --strict
+          tar -xzf /tmp/mcp-publisher.tar.gz -C /tmp mcp-publisher
+          chmod 0755 /tmp/mcp-publisher
+          /tmp/mcp-publisher --help >/dev/null
+
+      - name: Authenticate with GitHub OIDC
+        shell: bash
+        run: /tmp/mcp-publisher login github-oidc
+
+      - name: Publish server metadata
+        shell: bash
+        run: /tmp/mcp-publisher publish

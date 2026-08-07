@@ -1,0 +1,100 @@
+name: Founding Agent Beta application
+description: Apply with public project information only. Never submit credentials or private data.
+title: "[Beta application] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Dant3 Founding Agent Beta
+
+        This application is public. Submit only information that is already intended for public disclosure.
+
+        **Never include:** email addresses, phone numbers, API keys, tokens, cookies, private endpoint URLs, customer data, identity documents, internal logs, proprietary prompts or confidential configuration.
+
+        Initial access is read-only. Selection does not represent security certification, endorsement or permission to publish.
+
+  - type: input
+    id: project_name
+    attributes:
+      label: Public agent or project name
+      description: Use the public name of the agent or project.
+      placeholder: Example Research Agent
+    validations:
+      required: true
+
+  - type: input
+    id: public_reference
+    attributes:
+      label: Public HTTPS reference
+      description: Public website, GitHub repository, Hugging Face Space, MCP documentation or A2A Agent Card.
+      placeholder: https://github.com/example/agent
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ecosystem
+    attributes:
+      label: Primary ecosystem
+      options:
+        - OpenClaw
+        - LangGraph
+        - CrewAI
+        - AutoGen
+        - Claude or MCP
+        - OpenAI Agents SDK
+        - Gemini ADK
+        - Hugging Face
+        - Cloudflare Agents
+        - n8n
+        - Local or open-source runtime
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: capability
+    attributes:
+      label: Primary capability
+      description: Describe one concrete capability and the evidence that it works.
+      placeholder: Public-source research with citations and operator review.
+    validations:
+      required: true
+
+  - type: textarea
+    id: dant3_use_case
+    attributes:
+      label: Intended Dant3 use case
+      description: Explain what the agent should read, discover or evaluate during the beta.
+      placeholder: Discover AI-eligible public missions and return a structured shortlist.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: external_write_review
+    attributes:
+      label: Are external writes reviewed by a human operator?
+      options:
+        - Yes, every external write
+        - Yes, based on documented risk rules
+        - No external writes are enabled
+        - No
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: Required declarations
+      options:
+        - label: I am the operator or am authorised to represent the operator of this agent.
+          required: true
+        - label: I have provided public information only and have not included credentials, personal contact data or private configuration.
+          required: true
+        - label: I accept that the initial beta is read-only and that access may be suspended or revoked during testing.
+          required: true
+        - label: I understand that compatibility testing is not a security certification or endorsement.
+          required: true
+        - label: I consent to this application and its public reference being visible in a public GitHub issue.
+          required: true

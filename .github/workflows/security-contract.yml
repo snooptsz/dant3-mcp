@@ -1,0 +1,136 @@
+name: Machine-access security contract
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: machine-access-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2, immutable
+        with:
+          persist-credentials: false
+
+      - name: Validate JSON and public descriptor policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import ipaddress
+          import json
+          import pathlib
+          import urllib.parse
+
+          root = pathlib.Path('.')
+          json_files = sorted(root.rglob('*.json'))
+          for path in json_files:
+              with path.open(encoding='utf-8') as handle:
+                  json.load(handle)
+
+          card_path = pathlib.Path('.well-known/agent-card.json')
+          if card_path.exists():
+              card = json.loads(card_path.read_text(encoding='utf-8'))
+              if card.get('authentication'):
+                  raise SystemExit('Public beta Agent Card must not advertise authentication')
+              if any('write' in tag.lower() for skill in card.get('skills', []) for tag in skill.get('tags', [])):
+                  raise SystemExit('Public beta Agent Card must not advertise write capability')
+              if any('submit' in str(skill.get('id', '')).lower() for skill in card.get('skills', [])):
+                  raise SystemExit('Public beta Agent Card must not advertise submission capability')
+
+          allowed_hosts = {'dant3.net', 'agents.dant3.net', 'github.com'}
+          text_suffixes = {'.json', '.md', '.txt', '.csv', '.yml', '.yaml'}
+          for path in root.rglob('*'):
+              if not path.is_file() or path.suffix.lower() not in text_suffixes:
+                  continue
+              if '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8', errors='strict')
+              for token in text.replace('(', ' ').replace(')', ' ').replace('`', ' ').split():
+                  candidate = token.strip('.,;:[]{}<>"\'')
+                  if not candidate.startswith(('http://', 'https://')):
+                      continue
+                  parsed = urllib.parse.urlparse(candidate)
+                  host = (parsed.hostname or '').lower()
+                  if parsed.scheme != 'https':
+                      raise SystemExit(f'Non-HTTPS public URL in {path}: {candidate}')
+                  if host in {'localhost'} or host.endswith(('.local', '.internal')):
+                      raise SystemExit(f'Internal hostname in {path}: {candidate}')
+                  try:
+                      ip = ipaddress.ip_address(host)
+                  except ValueError:
+                      ip = None
+                  if ip and (ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast):
+                      raise SystemExit(f'Non-public IP in {path}: {candidate}')
+                  # External documentation links are permitted in Markdown, but
+                  # machine endpoints in JSON must remain on canonical hosts.
+                  if path.suffix == '.json' and host not in allowed_hosts:
+                      raise SystemExit(f'Non-canonical JSON endpoint in {path}: {candidate}')
+          PY
+
+      - name: Reject secret-shaped values
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib
+          import re
+
+          excluded = {pathlib.Path('.github/workflows/security-contract.yml')}
+          patterns = {
+              'Supabase secret key': re.compile(r'sb_' + r'secret_[A-Za-z0-9_-]{12,}'),
+              'Supabase service role literal': re.compile(r'service' + r'_role\s*[:=]\s*["\'][^"\']{8,}'),
+              'Stripe live key': re.compile(r'sk_' + r'live_[A-Za-z0-9]{12,}'),
+              'AWS access key': re.compile(r'AKIA[0-9A-Z]{16}'),
+              'JWT-shaped token': re.compile(r'eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}'),
+              'Private key block': re.compile(r'-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----'),
+              'Credentialed database URL': re.compile(r'postgres(?:ql)?://[^\s/:]+:[^\s@]+@', re.I),
+          }
+          text_suffixes = {'.json', '.md', '.txt', '.csv', '.yml', '.yaml', '.js', '.ts', '.sql'}
+          for path in pathlib.Path('.').rglob('*'):
+              if not path.is_file() or path in excluded or '.git' in path.parts:
+                  continue
+              if path.suffix.lower() not in text_suffixes:
+                  continue
+              text = path.read_text(encoding='utf-8', errors='ignore')
+              for label, pattern in patterns.items():
+                  if pattern.search(text):
+                      raise SystemExit(f'{label} detected in {path}')
+          PY
+
+      - name: Enforce outreach data minimisation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import csv
+          import pathlib
+          import re
+
+          path = pathlib.Path('docs/founding-agent-outreach.csv')
+          if not path.exists():
+              raise SystemExit(0)
+          with path.open(newline='', encoding='utf-8') as handle:
+              reader = csv.DictReader(handle)
+              forbidden_columns = {'email', 'phone', 'operator_contact', 'private_contact', 'token', 'secret'}
+              present = {name.lower() for name in (reader.fieldnames or [])}
+              overlap = forbidden_columns & present
+              if overlap:
+                  raise SystemExit(f'Private-contact columns are prohibited: {sorted(overlap)}')
+              email = re.compile(r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b', re.I)
+              for index, row in enumerate(reader, start=2):
+                  joined = ' '.join(str(value or '') for value in row.values())
+                  if email.search(joined):
+                      raise SystemExit(f'Email address found in public outreach tracker at line {index}')
+          PY
