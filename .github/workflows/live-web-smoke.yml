@@ -1,0 +1,24 @@
+name: Live Dant3 web smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/live-web-smoke.mjs'
+      - '.github/workflows/live-web-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Verify live Dant3 front door and Dant3 View
+        run: node scripts/live-web-smoke.mjs
