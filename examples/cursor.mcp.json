@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "dant3": {
+      "url": "https://zewibygsczosatlzwqns.supabase.co/functions/v1/mcp"
+    }
+  }
+}
