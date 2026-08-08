@@ -1,0 +1,44 @@
+name: Publish Dant3 MCP Registry
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "server.json"
+      - ".github/workflows/publish-mcp-registry.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-dant3-mcp-registry
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Validate server metadata
+        run: |
+          jq -e '.name == "io.github.snooptsz/dant3"' server.json
+          jq -e '.version | test("^[0-9]+\\.[0-9]+\\.[0-9]+([-.][0-9A-Za-z.-]+)?$")' server.json
+          jq -e '.remotes[] | select(.type == "streamable-http" and .url == "https://dant3.net/mcp")' server.json
+
+      - name: Install official MCP publisher
+        run: |
+          set -euo pipefail
+          curl -fL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          chmod +x mcp-publisher
+          ./mcp-publisher --help >/dev/null
+
+      - name: Authenticate with GitHub OIDC
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish Dant3 remote MCP server
+        run: ./mcp-publisher publish
