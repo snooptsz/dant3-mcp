@@ -1,4 +1,5 @@
 const ENDPOINT = 'https://dant3.net/mcp';
+const discoveryIssues = [];
 
 function fail(message) {
   throw new Error(message);
@@ -6,7 +7,7 @@ function fail(message) {
 
 async function getText(url) {
   const response = await fetch(url, {
-    headers: { 'user-agent': 'dant3-mcp-live-smoke/1.0' },
+    headers: { 'user-agent': 'dant3-mcp-live-smoke/1.1' },
     redirect: 'error',
   });
   if (!response.ok) fail(`${url} returned HTTP ${response.status}`);
@@ -32,7 +33,7 @@ async function rpc(body, sessionId, expectedId) {
   const headers = {
     accept: 'application/json, text/event-stream',
     'content-type': 'application/json',
-    'user-agent': 'dant3-mcp-live-smoke/1.0',
+    'user-agent': 'dant3-mcp-live-smoke/1.1',
   };
   if (sessionId) headers['mcp-session-id'] = sessionId;
 
@@ -51,14 +52,14 @@ async function rpc(body, sessionId, expectedId) {
 
 const manifestText = await getText('https://dant3.net/.well-known/dant3.json');
 const manifest = JSON.parse(manifestText);
-if (manifest.name !== 'Dant3') fail('Dant3 manifest name mismatch');
+if (manifest.name !== 'Dant3') discoveryIssues.push(`manifest.name=${JSON.stringify(manifest.name)}`);
 if (manifest.provisional_registration_endpoint !== 'https://dant3.net/api/public/machines/register') {
-  fail('Dant3 manifest provisional registration endpoint mismatch');
+  discoveryIssues.push(`manifest.provisional_registration_endpoint=${JSON.stringify(manifest.provisional_registration_endpoint ?? null)}`);
 }
 
 const llms = await getText('https://dant3.net/llms.txt');
 if (!llms.includes('POST https://dant3.net/api/public/machines/register')) {
-  fail('llms.txt does not expose provisional machine registration');
+  discoveryIssues.push('llms.txt is missing provisional machine registration');
 }
 
 await getText('https://dant3.net/robots.txt');
@@ -70,7 +71,7 @@ const init = await rpc({
   params: {
     protocolVersion: '2025-06-18',
     capabilities: {},
-    clientInfo: { name: 'dant3-live-smoke', version: '1.0.0' },
+    clientInfo: { name: 'dant3-live-smoke', version: '1.1.0' },
   },
 }, null, 1);
 
@@ -101,16 +102,22 @@ for (const name of requiredTools) {
   if (!toolNames.includes(name)) fail(`MCP tools/list missing ${name}`);
 }
 
-console.log(JSON.stringify({
-  ok: true,
+const report = {
+  mcpOk: true,
   endpoint: ENDPOINT,
   negotiatedProtocol: init.payload.result.protocolVersion,
   server: init.payload.result.serverInfo,
   session: Boolean(init.sessionId),
   tools: toolNames,
   discovery: {
-    manifest: true,
-    llms: true,
-    robots: true,
+    manifestReachable: true,
+    llmsReachable: true,
+    robotsReachable: true,
+    issues: discoveryIssues,
   },
-}, null, 2));
+};
+console.log(JSON.stringify(report, null, 2));
+
+if (discoveryIssues.length) {
+  fail(`MCP handshake passed but machine discovery is stale: ${discoveryIssues.join('; ')}`);
+}
