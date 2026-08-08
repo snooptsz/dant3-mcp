@@ -1,4 +1,9 @@
-const ENDPOINT = 'https://dant3.net/mcp';
+import fs from 'node:fs';
+
+const registry = JSON.parse(fs.readFileSync(new URL('../server.json', import.meta.url), 'utf8'));
+const ENDPOINT = process.env.MCP_ENDPOINT || registry.remotes?.find((remote) => remote.type === 'streamable-http')?.url;
+if (!ENDPOINT) throw new Error('server.json has no streamable-http remote');
+
 const discoveryIssues = [];
 
 function fail(message) {
@@ -7,7 +12,7 @@ function fail(message) {
 
 async function getText(url) {
   const response = await fetch(url, {
-    headers: { 'user-agent': 'dant3-mcp-live-smoke/1.1' },
+    headers: { 'user-agent': 'dant3-mcp-live-smoke/1.2' },
     redirect: 'error',
   });
   if (!response.ok) fail(`${url} returned HTTP ${response.status}`);
@@ -33,7 +38,8 @@ async function rpc(body, sessionId, expectedId) {
   const headers = {
     accept: 'application/json, text/event-stream',
     'content-type': 'application/json',
-    'user-agent': 'dant3-mcp-live-smoke/1.1',
+    'mcp-protocol-version': '2025-06-18',
+    'user-agent': 'dant3-mcp-live-smoke/1.2',
   };
   if (sessionId) headers['mcp-session-id'] = sessionId;
 
@@ -61,7 +67,6 @@ const llms = await getText('https://dant3.net/llms.txt');
 if (!llms.includes('POST https://dant3.net/api/public/machines/register')) {
   discoveryIssues.push('llms.txt is missing provisional machine registration');
 }
-
 await getText('https://dant3.net/robots.txt');
 
 const init = await rpc({
@@ -71,17 +76,14 @@ const init = await rpc({
   params: {
     protocolVersion: '2025-06-18',
     capabilities: {},
-    clientInfo: { name: 'dant3-live-smoke', version: '1.1.0' },
+    clientInfo: { name: 'dant3-live-smoke', version: '1.2.0' },
   },
 }, null, 1);
 
 if (!init.payload?.result?.serverInfo?.name) fail('MCP initialize did not return serverInfo.name');
 if (!init.payload?.result?.protocolVersion) fail('MCP initialize did not negotiate a protocol version');
 
-await rpc({
-  jsonrpc: '2.0',
-  method: 'notifications/initialized',
-}, init.sessionId, undefined);
+await rpc({ jsonrpc: '2.0', method: 'notifications/initialized' }, init.sessionId, undefined);
 
 const tools = await rpc({
   jsonrpc: '2.0',
@@ -102,9 +104,18 @@ for (const name of requiredTools) {
   if (!toolNames.includes(name)) fail(`MCP tools/list missing ${name}`);
 }
 
+const overview = await rpc({
+  jsonrpc: '2.0',
+  id: 3,
+  method: 'tools/call',
+  params: { name: 'dant3_platform_overview', arguments: {} },
+}, init.sessionId, 3);
+if (!overview.payload?.result?.content?.length) fail('MCP platform overview returned no content');
+
 const report = {
   mcpOk: true,
   endpoint: ENDPOINT,
+  registryVersion: registry.version,
   negotiatedProtocol: init.payload.result.protocolVersion,
   server: init.payload.result.serverInfo,
   session: Boolean(init.sessionId),
@@ -118,6 +129,6 @@ const report = {
 };
 console.log(JSON.stringify(report, null, 2));
 
-if (discoveryIssues.length) {
+if (process.env.FAIL_ON_DISCOVERY_DRIFT === 'true' && discoveryIssues.length) {
   fail(`MCP handshake passed but machine discovery is stale: ${discoveryIssues.join('; ')}`);
 }

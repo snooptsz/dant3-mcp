@@ -2,6 +2,11 @@ name: Live Dant3 MCP smoke
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/live-mcp-smoke.mjs'
+      - '.github/workflows/live-mcp-smoke.yml'
+      - 'server.json'
   push:
     branches: [main]
     paths:
@@ -21,5 +26,5 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - name: Verify live Dant3 discovery and MCP handshake
+      - name: Verify Registry-declared MCP runtime from an external runner
         run: node scripts/live-mcp-smoke.mjs
