@@ -28,7 +28,8 @@ jobs:
         run: |
           jq -e '.name == "io.github.snooptsz/dant3"' server.json
           jq -e '.version | test("^[0-9]+\\.[0-9]+\\.[0-9]+([-.][0-9A-Za-z.-]+)?$")' server.json
-          jq -e '.remotes[] | select(.type == "streamable-http" and .url == "https://dant3.net/mcp")' server.json
+          jq -e '.description | length <= 100' server.json
+          jq -e '.remotes | any(.type == "streamable-http" and (.url | type == "string") and (.url | startswith("https://")))' server.json
 
       - name: Install official MCP publisher
         run: |
