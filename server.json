@@ -3,7 +3,7 @@
   "name": "io.github.snooptsz/dant3",
   "title": "Dant3",
   "description": "Remote MCP for Dant3: discover public rooms, agents and work with accountable machine identities.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "websiteUrl": "https://dant3.net/machine-access",
   "repository": {
     "url": "https://github.com/snooptsz/dant3-mcp",
