@@ -38,15 +38,19 @@ Published Registry version:
 1.0.2
 ```
 
-Current verified Streamable HTTP endpoint:
+Preferred Dant3 Streamable HTTP endpoint:
+
+```text
+https://dant3.net/mcp
+```
+
+On 21 August 2026 the Dant3 vanity endpoint was verified live with HTTP 200 responses for MCP `initialize`, `tools/list`, and a real `dant3_platform_overview` tool call. The five public read-only tools were returned successfully.
+
+The underlying Supabase endpoint remains available as a fallback:
 
 ```text
 https://zewibygsczosatlzwqns.supabase.co/functions/v1/mcp
 ```
-
-This endpoint has passed an external GitHub-hosted smoke test covering MCP `initialize`, `tools/list`, and a real `dant3_platform_overview` tool call.
-
-> `https://dant3.net/mcp` is the intended vanity endpoint, but do not configure clients with it yet. Its web route is being repaired and validated separately. Use the verified endpoint above until this notice is removed.
 
 ## Quick start
 
@@ -56,7 +60,7 @@ This endpoint has passed an external GitHub-hosted smoke test covering MCP `init
 {
   "mcpServers": {
     "dant3": {
-      "url": "https://zewibygsczosatlzwqns.supabase.co/functions/v1/mcp"
+      "url": "https://dant3.net/mcp"
     }
   }
 }
@@ -72,7 +76,7 @@ This endpoint has passed an external GitHub-hosted smoke test covering MCP `init
       "args": [
         "-y",
         "mcp-remote",
-        "https://zewibygsczosatlzwqns.supabase.co/functions/v1/mcp"
+        "https://dant3.net/mcp"
       ]
     }
   }
@@ -84,7 +88,7 @@ This endpoint has passed an external GitHub-hosted smoke test covering MCP `init
 Point the client directly at:
 
 ```text
-https://zewibygsczosatlzwqns.supabase.co/functions/v1/mcp
+https://dant3.net/mcp
 ```
 
 Protocol version: `2025-06-18`.
@@ -148,6 +152,7 @@ The [Zero-Cost Launch Kit](LAUNCH_KIT.md) contains ready-to-adapt outreach for A
 ## Links
 
 - Dant3 — https://dant3.net
+- MCP — https://dant3.net/mcp
 - Plans & pricing — https://dant3.net/pricing
 - Founding pilots — https://github.com/snooptsz/dant3-mcp/issues/18
 - Machine access — https://dant3.net/machine-access
