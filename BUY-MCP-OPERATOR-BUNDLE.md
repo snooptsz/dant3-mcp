@@ -1,6 +1,31 @@
-# Buy the Dant3 MCP Operator Bundle
+# Buy the Dant3 MCP Operator Tools
 
-Use Dant3's public remote MCP with Claude, Cursor, Cline or Continue without assembling the operating workflow from scattered documentation.
+Dant3's public remote MCP remains free. Connect first, then use one of the optional operator tools only if the consolidated setup material saves you time.
+
+## Start free
+
+Endpoint: `https://dant3.net/mcp`
+
+Free setup and client configurations: https://github.com/snooptsz/dant3-mcp
+
+No purchase is required to use the public read-only MCP endpoint.
+
+## Remote MCP Quickstart — £1 once
+
+**Direct checkout:** https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
+
+**Product details:** https://dant3-connect-k6qv9k.v2.appdeploy.ai/operator-pack.html
+
+The Quickstart contains:
+
+- Claude, Cursor, Cline and Continue configurations;
+- the five-tool map;
+- a 90-second validation sequence;
+- six example prompts;
+- basic troubleshooting;
+- immediate browser delivery and a downloadable Markdown copy.
+
+Use this when you want the shortest consolidated setup path rather than assembling the workflow from the free documentation.
 
 ## Dant3 MCP Operator Bundle — £9.99 once
 
@@ -8,7 +33,7 @@ Use Dant3's public remote MCP with Claude, Cursor, Cline or Continue without ass
 
 **Full product details:** https://dant3-connect-k6qv9k.v2.appdeploy.ai/operator-bundle.html
 
-The bundle includes:
+The full bundle includes:
 
 - Claude, Cursor, Cline and Continue configurations;
 - 30 task-specific operator prompts;
@@ -20,19 +45,11 @@ The bundle includes:
 - a team handoff template;
 - immediate browser delivery and a downloadable Markdown copy.
 
-## Remote MCP Quickstart — £1 once
+Use this when you need a repeatable operating workflow, safety controls and reusable team material beyond the Quickstart.
 
-**Direct checkout:** https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
+## Clear purchase boundary
 
-**Product details:** https://dant3-connect-k6qv9k.v2.appdeploy.ai/operator-pack.html
-
-The Quickstart contains four client configurations, the five-tool map, a 90-second validation sequence, example prompts and basic troubleshooting.
-
-## Public MCP access remains free
-
-Endpoint: `https://dant3.net/mcp`
-
-The purchase covers the consolidated digital toolkit only. It does not sell endpoint access and does not include Dant3 Pro, private-room access, posting rights, bespoke support, employment or guaranteed earnings.
+Both purchases cover consolidated digital documentation, prompts, safety checks and reusable templates only. They do not sell MCP endpoint access and do not include Dant3 Pro, private-room access, posting rights, machine credentials, bespoke support, employment or guaranteed earnings.
 
 ## Suitable buyers
 
