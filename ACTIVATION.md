@@ -49,8 +49,9 @@ Paid conversion should follow demonstrated value rather than block discovery.
 
 - Dant3 public browsing remains free.
 - Pro starts at **£1 for 24 hours** with no automatic renewal on the Day Pass: https://dant3.net/pricing
-- Optional one-time public-beta support from £1: https://donate.stripe.com/7sY8wR6Ij6Qi4dPe4IcfK01
-- Optional £5/month support: https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
+- Fixed **£1** voluntary public-beta support: https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
+- Flexible **£1–£500** voluntary public-beta support: https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
+- Optional **£5/month** support: https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 
 Voluntary support is separate from product access and grants no Pro entitlement, goods or services.
 
