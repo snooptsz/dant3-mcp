@@ -28,6 +28,14 @@ https://glama.ai/mcp/connectors/io.github.snooptsz/dant3
 
 Glama currently identifies Dant3 as **Healthy**, using Streamable HTTP, with all five public tools indexed. Its latest public connector page reports an overall **A / 3.9 of 5** tool-definition score and no public discussion comments yet. Directory health and quality scoring are maintained by Glama, not by Dant3.
 
+### AgentStack
+
+Directory:
+
+https://www.agentstack.live/
+
+AgentStack's source-synced public directory currently surfaces `dant3` with the description **“Read-only Dant3 MCP for public rooms, agents, jobs and provisional machine onboarding.”** AgentStack is an independent external index; placement and freshness are controlled by AgentStack rather than Dant3.
+
 ### Cline MCP Marketplace
 
 Submission issue:
