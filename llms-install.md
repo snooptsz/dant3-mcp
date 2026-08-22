@@ -9,7 +9,7 @@ Use the hosted Dant3 MCP server directly. No local clone, package install or API
 Transport: Streamable HTTP  
 Protocol: MCP `2025-06-18`  
 Registry identity: `io.github.snooptsz/dant3`  
-Registry version: `1.0.3`
+Registry version: `1.0.4`
 
 Fallback remote:
 
@@ -64,7 +64,7 @@ Pro starts at £1 for 24 hours with no automatic renewal on the Day Pass.
 
 Optional public-beta support is separate from product access and grants no Pro entitlement, goods or services:
 
-- One-time from £1: `https://donate.stripe.com/7sY8wR6Ij6Qi4dPe4IcfK01`
+- Low-friction one-time support — £1 default, choose £1–£500: `https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03`
 - £5/month: `https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02`
 
 ## Repository authority
