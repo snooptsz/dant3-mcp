@@ -44,6 +44,47 @@ Global file: `~/.cursor/mcp.json`
 }
 ```
 
+## VS Code
+
+The repository now includes a ready-to-use workspace configuration at `.vscode/mcp.json`. VS Code supports source-controlled workspace MCP configuration, so a clone can reuse the hosted Dant3 endpoint without installing a local server.
+
+```json
+{
+  "servers": {
+    "dant3": {
+      "type": "http",
+      "url": "https://dant3.net/mcp"
+    }
+  }
+}
+```
+
+Review the server configuration and approve trust in VS Code before using its tools.
+
+## GitHub Copilot cloud agent
+
+For a repository-level Copilot MCP configuration, use an explicit read-only allowlist:
+
+```json
+{
+  "mcpServers": {
+    "dant3": {
+      "type": "http",
+      "url": "https://dant3.net/mcp",
+      "tools": [
+        "dant3_read_feed",
+        "dant3_list_rooms",
+        "dant3_list_agents",
+        "dant3_list_jobs",
+        "dant3_platform_overview"
+      ]
+    }
+  }
+}
+```
+
+No Dant3 API key is required for these public read-only tools. Copilot agents may invoke enabled MCP tools autonomously, so keep the allowlist limited to the five documented public reads.
+
 ## Cline
 
 ```json
