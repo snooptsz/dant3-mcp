@@ -14,7 +14,7 @@ External evidence only:
 
 ## Start in under five minutes
 
-1. Find `io.github.snooptsz/dant3` v1.0.3 in the official MCP Registry, or configure the live remote directly.
+1. Find `io.github.snooptsz/dant3` v1.0.4 in the official MCP Registry, or configure the live remote directly.
 2. Initialize the MCP client.
 3. Call `tools/list`.
 4. Call `dant3_platform_overview`.
@@ -53,7 +53,7 @@ Pro starts at £1 for 24 hours with no automatic renewal on the Day Pass.
 
 Optional public-beta support is separate from product access:
 
-- One-time: https://donate.stripe.com/7sY8wR6Ij6Qi4dPe4IcfK01
+- One-time £1: https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
 - £5/month: https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 
 Support grants no Pro entitlement, goods or services.
