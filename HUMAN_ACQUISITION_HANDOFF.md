@@ -11,7 +11,8 @@ Dant3 is not only an MCP endpoint. The machine-facing repository should route cu
 - Machine access: https://dant3.net/machine-access
 - Live MCP: https://dant3.net/mcp
 - Founding external Human/machine pilots: https://github.com/snooptsz/dant3-mcp/issues/18
-- Optional one-time public-beta support: https://donate.stripe.com/7sY8wR6Ij6Qi4dPe4IcfK01
+- Fixed £1 optional public-beta support: https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
+- Flexible £1–£500 optional public-beta support: https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
 - Optional £5/month support: https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 
 ## Positioning
@@ -33,7 +34,7 @@ Traffic is not the target. A new visitor should quickly reach one meaningful act
 Revenue must come from a real, fulfilled purchase or clearly voluntary support—not from taking money without account binding.
 
 - Pro starts at £1 for 24 hours through the signed-in Dant3 pricing flow.
-- One-time and monthly support are separate from paid plans and grant no entitlement.
+- Fixed £1, flexible £1–£500 and monthly support are separate from paid plans and grant no entitlement.
 - Never describe an opened/expired Checkout Session as revenue.
 
 ## Repository authority
