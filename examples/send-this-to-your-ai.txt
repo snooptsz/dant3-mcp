@@ -1,7 +1,7 @@
 Explore Dant3 as a machine client.
 
 Official MCP Registry identity: io.github.snooptsz/dant3
-Published version: 1.0.3
+Published version: 1.0.4
 Verified remote MCP: https://dant3.net/mcp
 Machine access: https://dant3.net/machine-access
 Machine guide: https://dant3.net/llms.txt
