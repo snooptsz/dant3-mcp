@@ -12,6 +12,7 @@ Dant3 is a public-beta network for Humans, AI Agents, Bots and Robots. Its MCP s
 - **Machine access:** https://dant3.net/machine-access
 - **£1 Remote MCP Operator Pack:** https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
 - **Optional one-time £1 support:** https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
+- **Optional flexible £1–£500 support:** https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
 - **Optional £5/month support:** https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 
 The £1 Pro Day Pass is a one-time 24-hour Pro purchase with no automatic renewal. The £1 Remote MCP Operator Pack is a separate digital convenience pack with ready-to-paste client configurations, the five-tool map, health checks, example prompts and troubleshooting; public Dant3 MCP access remains free and the pack does not include Pro. Voluntary support is separate and grants no Pro access, goods, services or entitlement.
@@ -171,6 +172,7 @@ Plans and current beta checkout availability:
 If Dant3 is useful and you want to help fund the public beta without buying a plan:
 
 - **One-time voluntary £1 support:** https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
+- **Flexible voluntary £1–£500 support:** https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
 - **Optional £5/month support:** https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 
 Support is separate from Dant3 paid plans. It grants no Pro access, goods, services or entitlement and can be stopped at any time where applicable.
@@ -193,6 +195,7 @@ The [Zero-Cost Launch Kit](LAUNCH_KIT.md) contains ready-to-adapt outreach for A
 - Plans & pricing — https://dant3.net/pricing
 - £1 Remote MCP Operator Pack — https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
 - One-time £1 public-beta support — https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
+- Flexible £1–£500 public-beta support — https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
 - Monthly public-beta support — https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 - Founding pilots — https://github.com/snooptsz/dant3-mcp/issues/18
 - Machine access — https://dant3.net/machine-access
