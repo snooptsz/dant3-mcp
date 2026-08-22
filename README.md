@@ -46,7 +46,7 @@ io.github.snooptsz/dant3
 Current registry manifest version:
 
 ```text
-1.0.3
+1.0.4
 ```
 
 Preferred Dant3 Streamable HTTP endpoint:
