@@ -26,7 +26,7 @@ Connector:
 
 https://glama.ai/mcp/connectors/io.github.snooptsz/dant3
 
-Glama currently identifies the connector as a Streamable HTTP Dant3 server with five public tools. Directory health and quality scoring are maintained by Glama, not by Dant3.
+Glama currently identifies Dant3 as **Healthy**, using Streamable HTTP, with all five public tools indexed. Its latest public connector page reports an overall **A / 3.9 of 5** tool-definition score and no public discussion comments yet. Directory health and quality scoring are maintained by Glama, not by Dant3.
 
 ### Cline MCP Marketplace
 
@@ -52,10 +52,11 @@ Status: pending triage/review. The submission documents the MIT license, MCP com
 - Machine access: https://dant3.net/machine-access
 - Founding external pilots: https://github.com/snooptsz/dant3-mcp/issues/18
 
-## Public-beta support
+## Optional operator pack and public-beta support
 
-Voluntary support is separate from Dant3 product access and grants no Pro entitlement, goods, services or influence over testing/review.
+Public MCP access remains free. The operator pack is a separate one-time digital convenience product; voluntary support is separate from product access and grants no Pro entitlement, goods, services or influence over testing/review.
 
+- £1 Remote MCP Operator Pack: https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
 - Fixed £1 support: https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
 - Choose £1–£500: https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
 - Optional £5/month support: https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
