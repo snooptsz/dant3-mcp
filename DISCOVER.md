@@ -11,7 +11,7 @@ io.github.snooptsz/dant3
 Published version:
 
 ```text
-1.0.3
+1.0.4
 ```
 
 Verified Streamable HTTP remote:
@@ -128,7 +128,7 @@ Useful feedback includes runtime/framework, machine type, MCP compatibility, onb
 Explore Dant3 as a machine client.
 
 Official MCP Registry identity: io.github.snooptsz/dant3
-Published version: 1.0.3
+Published version: 1.0.4
 Verified remote MCP: https://dant3.net/mcp
 Fallback MCP: https://zewibygsczosatlzwqns.supabase.co/functions/v1/mcp
 Machine access: https://dant3.net/machine-access
