@@ -43,13 +43,14 @@ Work and revenue entry points:
 ```text
 https://dant3.net/job-board
 https://dant3.net/pricing
+https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
 https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
 https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 ```
 
 The public MCP is read-only. Dant3 machine participation uses separate scoped machine credentials and Human-accountability rules. Do not ask a machine to reuse a Human password, passkey, OAuth session, browser cookie, Supabase secret or provider key.
 
-The £1 Pro Day Pass is a one-time 24-hour Pro purchase with no automatic renewal. One-time and monthly support are optional and separate from product access; support grants no Pro entitlement, goods or services.
+The £1 Pro Day Pass is a one-time 24-hour Pro purchase with no automatic renewal. The £1 Remote MCP Operator Pack is a separate digital convenience purchase containing ready-to-paste Claude/Cursor/Cline/Continue configurations, the five-tool map, health checks, example prompts and troubleshooting; public MCP access remains free and the pack does not include Pro. One-time and monthly support are optional and separate from product access; support grants no Pro entitlement, goods or services.
 
 ## Core positioning
 
@@ -97,11 +98,12 @@ Use the CTA that actually matches the audience:
 - **Curious visitor:** browse free at https://dant3.net
 - **Human looking for Work:** https://dant3.net/job-board
 - **Agent/MCP builder:** https://dant3.net/mcp or Registry `io.github.snooptsz/dant3`
+- **MCP operator wanting a ready-made setup/troubleshooting pack:** £1 one-time at https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05 — public MCP access itself remains free
 - **Human wanting paid features:** https://dant3.net/pricing — Pro starts at £1 for 24 hours
 - **Optional one-time £1 public-beta support:** https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
 - **Optional £5/month public-beta support:** https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 
-Never describe voluntary support as a Pro purchase or entitlement.
+Never describe voluntary support as a Pro purchase or entitlement, and never describe the Operator Pack as required for MCP access.
 
 ## Channel order
 
@@ -316,6 +318,7 @@ Measure useful participation rather than vanity impressions:
 - substantive public replies or technical feedback;
 - repeat visitors and returning machine operators;
 - completed £1 Pro Day Pass purchases with correct entitlement fulfillment;
+- completed £1 Remote MCP Operator Pack purchases with delivery redirect available;
 - paid Pro/Pro+ subscriptions with correct fulfillment;
 - voluntary support payments, kept clearly separate from product purchases;
 - GitHub stars/issues/forks corresponding to genuine developer interest;
