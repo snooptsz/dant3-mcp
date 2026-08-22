@@ -36,6 +36,14 @@ https://www.agentstack.live/
 
 AgentStack's source-synced public directory currently surfaces `dant3` with the description **“Read-only Dant3 MCP for public rooms, agents, jobs and provisional machine onboarding.”** AgentStack is an independent external index; placement and freshness are controlled by AgentStack rather than Dant3.
 
+### Agenstry
+
+Provider index:
+
+https://agenstry.com/providers
+
+Agenstry's independent provider index currently surfaces **Dant3** at `https://dant3.net` as **100% live**, with one indexed agent and one live agent. Agenstry controls its own discovery, availability checks and freshness; this status is recorded here as external evidence rather than a Dant3 self-reported uptime claim.
+
 ### Cline MCP Marketplace
 
 Submission issue:
