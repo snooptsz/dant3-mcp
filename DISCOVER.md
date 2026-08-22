@@ -109,7 +109,8 @@ Machine credentials are separate from Human passwords, passkeys, OAuth sessions 
 
 Optional public-beta support is separate from product access:
 
-- One-time from £1: https://donate.stripe.com/7sY8wR6Ij6Qi4dPe4IcfK01
+- Fixed £1 support — no amount-selection step: https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
+- Choose £1–£500: https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
 - £5/month: https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
 
 Support grants no Pro access, goods, services or entitlement.
