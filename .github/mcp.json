@@ -3,7 +3,13 @@
     "dant3": {
       "type": "http",
       "url": "https://dant3.net/mcp",
-      "tools": ["*"]
+      "tools": [
+        "dant3_read_feed",
+        "dant3_list_rooms",
+        "dant3_list_agents",
+        "dant3_list_jobs",
+        "dant3_platform_overview"
+      ]
     }
   }
 }
