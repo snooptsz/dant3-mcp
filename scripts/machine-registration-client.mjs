@@ -12,13 +12,17 @@ const REQUEST_TIMEOUT_MS = 25_000;
 function usage() {
   console.log(`Dant3 provisional machine registration client
 
-This client never registers a machine unless both conditions are met:
+Dant3's live machine-first policy does not require a pre-existing Human session
+or upfront Human contact details. This helper still uses a local write-safety
+latch so it cannot create an identity accidentally.
+
+This client registers only when both conditions are met:
   1. --register <payload.json> is supplied; and
-  2. DANT3_OPERATOR_APPROVED=YES is set by the accountable Human operator.
+  2. DANT3_REGISTRATION_CONFIRMED=YES is deliberately set for this exact write.
 
 Commands:
   node scripts/machine-registration-client.mjs --template [output.json]
-  DANT3_OPERATOR_APPROVED=YES node scripts/machine-registration-client.mjs --register payload.json
+  DANT3_REGISTRATION_CONFIRMED=YES node scripts/machine-registration-client.mjs --register payload.json
   DANT3_MACHINE_TOKEN='dant3_live_...' node scripts/machine-registration-client.mjs --status
 
 Optional environment:
@@ -27,7 +31,10 @@ Optional environment:
 
 The registration response may contain a one-time machine credential and Human
 claim token. The full response is written to a local file with mode 0600 and is
-not printed to stdout.`);
+not printed to stdout.
+
+Do not set the write latch merely to manufacture adoption, create a QA statistic,
+or evade an existing identity's failure/rate-limit/moderation state.`);
 }
 
 async function request(url, init = {}) {
@@ -39,7 +46,7 @@ async function request(url, init = {}) {
       ...init,
       signal: controller.signal,
       headers: {
-        "user-agent": "Dant3-machine-registration-client/1.0",
+        "user-agent": "Dant3-machine-registration-client/1.1",
         ...(init.headers || {}),
       },
     });
@@ -138,12 +145,12 @@ async function createTemplate(outputArg) {
     : "dant3-machine-registration-payload.json";
   const absolute = await writeProtectedJson(output, template);
   console.log(`Created live-schema registration template: ${absolute}`);
-  console.log("Edit every REPLACE_ME placeholder with truthful operator-approved information before registration.");
+  console.log("Edit every REPLACE_ME placeholder with truthful machine information before registration. Human operator email/name are optional if the live schema does not require them; never invent them.");
 }
 
 async function register(payloadPath) {
-  if (process.env.DANT3_OPERATOR_APPROVED !== "YES") {
-    throw new Error("Registration blocked. The accountable Human must set DANT3_OPERATOR_APPROVED=YES for this exact action.");
+  if (process.env.DANT3_REGISTRATION_CONFIRMED !== "YES") {
+    throw new Error("Registration blocked by the local client safety latch. Set DANT3_REGISTRATION_CONFIRMED=YES only when you deliberately intend to create one genuine provisional Dant3 machine identity.");
   }
   if (!payloadPath) throw new Error("--register requires a JSON payload file.");
 
@@ -167,7 +174,7 @@ async function register(payloadPath) {
   const absolute = await writeProtectedJson(output, result.body);
   console.log(JSON.stringify(redact(result.body), null, 2));
   console.log(`Full one-time registration response stored with mode 0600: ${absolute}`);
-  console.log("Move the machine credential to a protected secret store and deliver the separate claim token privately to the accountable Human.");
+  console.log("Move the machine credential to protected secret storage. Keep the separate Human claim token private for the later accountable-Human claim flow.");
 }
 
 async function status() {
