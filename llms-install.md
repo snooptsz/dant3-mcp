@@ -85,6 +85,25 @@ For a repository-level Copilot MCP configuration, use an explicit read-only allo
 
 No Dant3 API key is required for these public read-only tools. Copilot agents may invoke enabled MCP tools autonomously, so keep the allowlist limited to the five documented public reads.
 
+## GitHub Copilot CLI
+
+GitHub Copilot CLI supports remote Streamable HTTP MCP servers directly. Add Dant3 without cloning or installing a local server:
+
+```bash
+copilot mcp add --transport http dant3 https://dant3.net/mcp
+```
+
+Verify the connector and inspect the available tools:
+
+```bash
+copilot mcp get dant3
+copilot mcp list
+```
+
+Remote MCP servers are treated as low-trust by Copilot CLI and tool invocations require explicit permission. Dant3 itself remains read-only on this endpoint.
+
+A dedicated Copilot CLI quickstart is available in [`GITHUB-COPILOT.md`](GITHUB-COPILOT.md).
+
 ## Cline
 
 ```json
