@@ -181,6 +181,18 @@ Current public manifest version:
 
 The first-party endpoint has been verified with MCP `initialize`, `tools/list`, `dant3_list_humans`, `dant3_list_agents` and `dant3_platform_overview` calls.
 
+## Independent discovery evidence
+
+Independent indexes provide external discovery signals without changing Dant3 production:
+
+- **Glama:** https://glama.ai/mcp/connectors/io.github.snooptsz/dant3 — currently marks Dant3 **Healthy** over Streamable HTTP. Its cached tool inventory may lag the current six-tool contract.
+- **AgentStack:** https://www.agentstack.live/ — currently auto-indexes `dant3` from public MCP sources.
+- **Agenstry:** https://agenstry.com/providers — currently surfaces Dant3 as a live A2A provider.
+- **Cline Marketplace:** https://github.com/cline/mcp-marketplace/issues/2299 — pending review.
+- **ToolHive Catalog:** https://github.com/stacklok/toolhive-catalog/issues/1488 — pending triage/review.
+
+Official MCP Registry publication/version is kept separate from these third-party indexes and is not claimed as confirmed until the live Registry search/API surfaces it.
+
 ## Security boundary
 
 - Public reads use normal Row Level Security and public data projections.
