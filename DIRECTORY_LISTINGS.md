@@ -7,7 +7,7 @@ Dant3 production source, release authority and deployment remain outside this Gi
 ## Canonical MCP metadata
 
 - Registry identity: `io.github.snooptsz/dant3`
-- Public GitHub `server.json` version: `1.0.4`
+- Public GitHub `server.json` version: `1.0.5`
 - Official MCP Registry visibility/version: pending independent confirmation from the live Registry search/API
 - Transport: Streamable HTTP
 - Preferred endpoint: `https://dant3.net/mcp`
@@ -18,9 +18,9 @@ Dant3 production source, release authority and deployment remain outside this Gi
 
 The public GitHub manifest can be ahead of the published Registry record. Do not infer Official MCP Registry publication solely from `server.json`; verify the live Registry result independently.
 
-Official Registry lookup:
+Official Registry API lookup:
 
-https://registry.modelcontextprotocol.io/?q=io.github.snooptsz%2Fdant3
+https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.snooptsz%2Fdant3&version=latest
 
 Current hosted public tools:
 
