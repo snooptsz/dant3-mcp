@@ -1,0 +1,1 @@
+Verify Dant3 Discovery Agent public A2A registry registration on 2026-08-23.
