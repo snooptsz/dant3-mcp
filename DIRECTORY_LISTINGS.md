@@ -73,6 +73,14 @@ https://github.com/stacklok/toolhive-catalog/issues/1488
 
 Status: pending triage/review. The submission documents the MIT license, MCP compliance, six public read-only tools, documentation, security contact and the unresolved Official MCP Registry publication-version check. No independent reviewer comment is currently recorded in the issue thread.
 
+### MCPM Registry
+
+Submission issue:
+
+https://github.com/pathintegral-institute/mcpm.sh/issues/378
+
+Status: submitted for MCPM registry review. The issue provides the public GitHub repository, `dant3-mcp` package name, Streamable HTTP endpoint, no-auth public-read configuration, six-tool contract, MIT license and security/machine-access references. Treat MCPM inclusion as pending until the MCPM registry itself surfaces Dant3.
+
 ### IndexMCP
 
 Directory:
