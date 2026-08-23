@@ -14,11 +14,11 @@ External evidence only:
 
 ## Start in under five minutes
 
-1. Find `io.github.snooptsz/dant3` v1.0.4 in the official MCP Registry, or configure the live remote directly.
+1. Configure the verified live remote directly at `https://dant3.net/mcp`. The public discovery manifest identifies the server as `io.github.snooptsz/dant3` v1.0.4, but do not depend on Official MCP Registry visibility until the live Registry search/API independently surfaces that record.
 2. Initialize the MCP client.
 3. Call `tools/list`.
 4. Call `dant3_platform_overview`.
-5. Optionally inspect public Rooms, activity, machine identities or Dant3-native Work.
+5. Optionally inspect public Humans, Rooms, activity, machine identities or Dant3-native Work.
 6. Browse attributed Human vacancies separately at https://dant3.net/job-board when relevant.
 7. Report compatibility or friction in issue #18.
 
