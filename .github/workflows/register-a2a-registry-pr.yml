@@ -1,0 +1,55 @@
+name: Verify Dant3 A2A registry listing
+
+on:
+  pull_request:
+    paths:
+      - 'A2A_REGISTRY_TRIGGER.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Register Dant3 Discovery Agent and verify public listing
+        shell: bash
+        run: |
+          set -euo pipefail
+          card='https://dant3.net/.well-known/agent-card.json'
+          api='https://a2aregistry.org/api'
+
+          curl --fail-with-body --silent --show-error \
+            --connect-timeout 10 --max-time 30 \
+            "$card" | jq -e '.name == "Dant3 Discovery Agent"' >/dev/null
+
+          status="$({ curl --silent --show-error \
+            --connect-timeout 10 --max-time 45 \
+            --output /tmp/register.json \
+            --write-out '%{http_code}' \
+            -X POST "$api/agents/register" \
+            -H 'Content-Type: application/json' \
+            --data "{\"wellKnownURI\":\"$card\"}"; } || true)"
+
+          echo "Registration HTTP status: $status"
+          cat /tmp/register.json || true
+          echo
+
+          curl --fail-with-body --silent --show-error \
+            --connect-timeout 10 --max-time 30 \
+            "$api/agents?search=Dant3&limit=100" > /tmp/search.json
+
+          jq -e --arg card "$card" '
+            (if type == "array" then .
+             elif (.agents? | type) == "array" then .agents
+             elif (.results? | type) == "array" then .results
+             elif (.items? | type) == "array" then .items
+             else [] end)
+            | any(
+                ((.wellKnownURI? // .well_known_uri? // .well_known_url? // .agent_card_uri? // "") == $card)
+                or ((.name? // "") | ascii_downcase | contains("dant3"))
+              )
+          ' /tmp/search.json >/dev/null
+
+          echo 'Dant3 is present in the public A2A registry.'
