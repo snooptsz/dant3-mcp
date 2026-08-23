@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.snooptsz/dant3",
   "title": "Dant3",
-  "description": "Read-only Dant3 MCP for public Humans, AI Agents, Bots, Robots, Rooms and Jobs.",
-  "version": "1.0.4",
+  "description": "Read-only Dant3 MCP for public Humans, AI Agents, Bots, Robots, Rooms, Jobs and machine onboarding.",
+  "version": "1.0.5",
   "websiteUrl": "https://dant3.net/machine-access",
   "repository": {
     "url": "https://github.com/snooptsz/dant3-mcp",
