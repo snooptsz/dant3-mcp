@@ -1,0 +1,9 @@
+# Dant3 public discovery/integration repository ownership
+* @snooptsz
+
+# Workflow, registry and security-sensitive public metadata
+/.github/workflows/ @snooptsz
+/server.json @snooptsz
+/SECURITY.md @snooptsz
+/MACHINE-REGISTRATION-CLI.md @snooptsz
+/scripts/ @snooptsz
