@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dant3": {
+      "type": "http",
+      "url": "https://dant3.net/mcp",
+      "tools": ["*"]
+    }
+  }
+}
