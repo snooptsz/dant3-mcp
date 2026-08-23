@@ -21,25 +21,56 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Validate server metadata
-        run: |
-          jq -e '.name == "io.github.snooptsz/dant3"' server.json
-          jq -e '.version | test("^[0-9]+\\.[0-9]+\\.[0-9]+([-.][0-9A-Za-z.-]+)?$")' server.json
-          jq -e '.description | length <= 100' server.json
-          jq -e '.remotes | any(.type == "streamable-http" and (.url | type == "string") and (.url | startswith("https://")))' server.json
-
-      - name: Install official MCP publisher
+      - name: Fetch exact server metadata
+        shell: bash
         run: |
           set -euo pipefail
-          curl -fL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          curl -fL \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/server.json" \
+            -o server.json
+          jq -e '.name == "io.github.snooptsz/dant3"' server.json >/dev/null
+          jq -e '.version == "1.0.5"' server.json >/dev/null
+          jq -e '.description | length <= 100' server.json >/dev/null
+          jq -e '.remotes | any(.type == "streamable-http" and .url == "https://dant3.net/mcp")' server.json >/dev/null
+
+      - name: Install pinned official MCP publisher
+        shell: bash
+        env:
+          MCP_PUBLISHER_VERSION: v1.8.0
+        run: |
+          set -euo pipefail
+          file="mcp-publisher_linux_amd64.tar.gz"
+          checksums="registry_${MCP_PUBLISHER_VERSION#v}_checksums.txt"
+          base="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          curl -fSL "${base}/${file}" -o "${file}"
+          curl -fSL "${base}/${checksums}" -o checksums.txt
+          grep -E " ${file}$" checksums.txt | sha256sum -c -
+          tar xzf "${file}" mcp-publisher
           chmod +x mcp-publisher
-          ./mcp-publisher --help >/dev/null
+          ./mcp-publisher --version
 
       - name: Authenticate with GitHub OIDC
-        run: ./mcp-publisher login github-oidc
+        shell: bash
+        run: ./mcp-publisher login github-oidc --registry https://registry.modelcontextprotocol.io
 
       - name: Publish Dant3 remote MCP server
-        run: ./mcp-publisher publish
+        shell: bash
+        run: ./mcp-publisher publish ./server.json
+
+      - name: Verify Official MCP Registry visibility
+        shell: bash
+        run: |
+          set -euo pipefail
+          found=0
+          for attempt in 1 2 3 4 5 6; do
+            payload="$(curl -fsS --get \
+              --data-urlencode 'search=io.github.snooptsz/dant3' \
+              --data-urlencode 'limit=20' \
+              https://registry.modelcontextprotocol.io/v0.1/servers)"
+            if jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.0.5")' <<<"${payload}" >/dev/null; then
+              found=1
+              break
+            fi
+            sleep 5
+          done
+          test "${found}" -eq 1
