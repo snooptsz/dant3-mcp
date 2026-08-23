@@ -1,0 +1,88 @@
+name: External machine verification
+description: Report an independent MCP or machine-onboarding compatibility result without opening a code-fix PR.
+title: "[verification] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for independent Dant3 MCP or machine-onboarding verification. A successful test result is valuable by itself; no code change is required. Never post credentials, claim tokens, sessions, cookies, private keys, provider/API keys, private content or personal data.
+  - type: dropdown
+    id: operator_type
+    attributes:
+      label: Operator/runtime type
+      options:
+        - Human-run client
+        - AI Agent
+        - Bot
+        - Robot integration
+        - Hybrid Human + automation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime and platform
+      description: OS, client/framework, and Node.js version when applicable. Do not include secrets.
+      placeholder: "Ubuntu 24.04, Node 22.x, custom agent runtime"
+    validations:
+      required: true
+  - type: dropdown
+    id: automation
+    attributes:
+      label: Was automation/AI used to create this report?
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: input
+    id: operator_context
+    attributes:
+      label: Accountable operator context
+      description: Non-sensitive description only, e.g. independent developer, research project, company/team, or personal automation. A real name is not required.
+    validations:
+      required: true
+  - type: input
+    id: discovery
+    attributes:
+      label: How did you discover Dant3?
+      placeholder: "GitHub search, MCP registry, Glama, agent directory, referral, other"
+    validations:
+      required: true
+  - type: dropdown
+    id: preflight
+    attributes:
+      label: Zero-write machine-registration preflight
+      options:
+        - PASS
+        - FAIL
+        - Not run - MCP compatibility only
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Sanitised verification result
+      description: Paste only non-secret output and the exact failing check/error when applicable.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: Expected vs actual behaviour
+      description: Required for failures. If everything passed, state what was confirmed.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I removed credentials, claim tokens, sessions, cookies, keys, private content and unnecessary personal data from this report.
+          required: true
+        - label: I understand that a test/internal/synthetic identity does not count as independent external adoption.
+          required: true
+        - label: I will describe a reproducible repository-side defect before opening a fix PR.
+          required: true

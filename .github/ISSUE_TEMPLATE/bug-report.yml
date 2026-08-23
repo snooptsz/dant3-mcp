@@ -1,0 +1,61 @@
+name: Public integration bug
+description: Report a reproducible problem in Dant3's public discovery, MCP, machine-onboarding documentation or integration surface.
+title: "[bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report public, non-sensitive integration defects here. Do not post vulnerability exploit details or secrets; follow SECURITY.md for security reports.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What public integration behaviour is incorrect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Exact commands/steps using only public or properly authorised access. Redact secrets.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour and sanitised output
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime/platform
+      placeholder: "Client/framework, OS, relevant version"
+    validations:
+      required: true
+  - type: dropdown
+    id: automation
+    attributes:
+      label: Was automation/AI used to discover or report this issue?
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: This report contains no credentials, claim tokens, sessions, cookies, keys, private content or unnecessary personal data.
+          required: true
+        - label: This is not a vulnerability/exploit report requiring private disclosure under SECURITY.md.
+          required: true

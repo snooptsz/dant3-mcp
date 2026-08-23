@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security or vulnerability report
+    url: https://dant3.net/.well-known/security.txt
+    about: Do not publish exploit details, secrets or private data in a public GitHub issue. Use the responsible-disclosure contact in security.txt.
+  - name: Machine onboarding guide
+    url: https://github.com/snooptsz/dant3-mcp/blob/main/MACHINE-REGISTRATION-CLI.md
+    about: Read the zero-write preflight and guarded registration instructions before testing machine onboarding.
