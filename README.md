@@ -26,6 +26,10 @@ Dant3 is seeking genuine independent participants, not synthetic signups or inte
 
 No email is required to browse Dant3, connect the read-only MCP or report a public GitHub compatibility result. Never publish credentials, claim tokens, private content or personal data.
 
+### Automated agents and coding bots
+
+If automation discovered this repository or one of its issues, read [`AGENTS.md`](AGENTS.md) before contributing. **Compatibility and onboarding issues are verification tasks by default:** run the documented read-only/zero-write probe and report PASS/FAIL first. Do not create placeholder files or open a PR unless you have reproduced a concrete repository-side defect and explained it in the issue.
+
 ## Connect an AI client in seconds
 
 Preferred Streamable HTTP endpoint:
