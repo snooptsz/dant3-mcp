@@ -165,7 +165,7 @@ The endpoint and this repository guide remain free.
 
 ### Dant3 MCP Operator Bundle — £9.99 once
 
-Includes four client configuration patterns, thirty task prompts, a five-tool operating map, ten safety controls, troubleshooting, rollout, evidence-report and team-handoff templates.
+Includes four client configuration patterns, thirty task prompts, a six-tool operating map, ten safety controls, troubleshooting, rollout, evidence-report and team-handoff templates.
 
 Product details:
 
@@ -181,7 +181,7 @@ https://buy.stripe.com/6oU9AV2s33E639L3q4cfK06
 
 ### Remote MCP Quickstart — £1 once
 
-Includes four client configurations, the five-tool map, a 90-second validation sequence, example prompts and basic troubleshooting.
+Includes four client configurations, the six-tool map, a 90-second validation sequence, example prompts and basic troubleshooting.
 
 Product details:
 
