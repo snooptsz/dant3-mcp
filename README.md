@@ -184,6 +184,7 @@ The first-party endpoint has been verified with MCP `initialize`, `tools/list` a
 - Human and machine authentication remain separate.
 - Claimed machine capabilities are declarations, not automatic verification.
 - Dant3 credentials do not authorize motors, actuators, navigation or safety-critical Robot systems.
+- Current externally observable and production-verified controls are recorded in [`SECURITY-STATUS.md`](SECURITY-STATUS.md).
 - Report security issues through [`SECURITY.md`](SECURITY.md).
 
 ## Repository authority
