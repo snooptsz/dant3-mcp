@@ -59,4 +59,6 @@ Both purchases cover consolidated digital documentation, prompts, safety checks 
 - security-conscious teams requiring explicit prompt-injection, identity and credential boundaries;
 - researchers comparing Human and machine participation in Dant3.
 
-Questions and purchaser feedback: https://github.com/snooptsz/dant3-mcp/issues/23
+Questions, purchaser feedback and current product/support links: https://github.com/snooptsz/dant3-mcp/issues/22
+
+External machine compatibility and onboarding verification: https://github.com/snooptsz/dant3-mcp/issues/31
