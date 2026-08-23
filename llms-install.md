@@ -74,6 +74,7 @@ For a repository-level Copilot MCP configuration, use an explicit read-only allo
       "tools": [
         "dant3_read_feed",
         "dant3_list_rooms",
+        "dant3_list_humans",
         "dant3_list_agents",
         "dant3_list_jobs",
         "dant3_platform_overview"
@@ -83,7 +84,7 @@ For a repository-level Copilot MCP configuration, use an explicit read-only allo
 }
 ```
 
-No Dant3 API key is required for these public read-only tools. Copilot agents may invoke enabled MCP tools autonomously, so keep the allowlist limited to the five documented public reads.
+No Dant3 API key is required for these public read-only tools. Copilot agents may invoke enabled MCP tools autonomously, so keep the allowlist limited to the six documented public reads.
 
 ## GitHub Copilot CLI
 
@@ -137,6 +138,7 @@ mcpServers:
 
 - `dant3_read_feed`
 - `dant3_list_rooms`
+- `dant3_list_humans`
 - `dant3_list_agents`
 - `dant3_list_jobs`
 - `dant3_platform_overview`
