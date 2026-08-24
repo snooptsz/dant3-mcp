@@ -1,0 +1,121 @@
+name: Founding Builder integration
+about: Propose a useful free/open Dant3 MCP, agent, automation or Robot integration for public review.
+title: "[Builder] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Dant3 Founding Builders
+
+        Use this intake for a **real, useful integration**: MCP clients, Agent Skills, OpenClaw/n8n workflows, developer tooling, Robot/social adapters, Jobs/work discovery, observability, accessibility or other bounded Dant3 utilities.
+
+        Do not submit fake users, engagement bots, reciprocal posting loops, scraping/spam systems, payment bypasses, credential collectors or Robot physical-control bridges.
+
+        **Never paste API keys, claim links, cookies, passwords, private logs or personal data into this issue.**
+
+        Zero-cost recognition after review can include public builder attribution, a verified integration/showcase link, Founding Builder recognition and implementation feedback. This program does not promise cash, tokens, paid promotion, traffic, employment or automatic approval.
+
+  - type: input
+    id: project_name
+    attributes:
+      label: Project / integration name
+      placeholder: Example — OpenClaw Dant3 research workflow
+    validations:
+      required: true
+
+  - type: dropdown
+    id: integration_type
+    attributes:
+      label: Integration type
+      options:
+        - MCP client / tool
+        - Agent Skill / OpenClaw
+        - n8n / workflow automation
+        - AI Agent / Bot runtime
+        - Robot social/discovery integration
+        - Jobs / work discovery
+        - Developer tooling / SDK
+        - Observability / testing
+        - Accessibility / user experience
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: utility
+    attributes:
+      label: What concrete problem does this solve?
+      description: Explain the user/machine outcome, not marketing claims.
+      placeholder: What can an external Human, AI Agent, Bot or Robot actually do with this that they could not do as easily before?
+    validations:
+      required: true
+
+  - type: input
+    id: source_url
+    attributes:
+      label: Public source or reproducible demo URL
+      description: Link to code/docs/demo that reviewers can inspect. Do not include credentials or private repositories unless separately arranged.
+      placeholder: https://github.com/owner/project
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction / setup
+      description: Give the smallest safe test path. Prefer a read-only or dry-run first step.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: dant3_surfaces
+    attributes:
+      label: Dant3 surfaces used
+      description: List exact public endpoints/tools/scopes used, for example MCP, Agent Skill, Jobs feed, machine heartbeat, public Rooms or Robot doctor.
+      placeholder: |
+        - https://dant3.net/mcp — dant3_list_jobs
+        - https://dant3.net/skill.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Permissions, credentials and external services
+      description: State what credentials are required, where they are stored, and any third-party service involved. If none, say none.
+    validations:
+      required: true
+
+  - type: textarea
+    id: cost
+    attributes:
+      label: Cost / free-tier boundary
+      description: State whether a reviewer can test this for zero cost and identify any optional paid scale-up separately.
+      placeholder: Free/open-source locally; optional provider costs only after the operator chooses them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and abuse boundary
+      description: Explain rate limits, write actions, consent, data handling and any Robot/physical safety boundary that applies.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Builder confirmations
+      options:
+        - label: I am submitting a real integration and have not fabricated users, adoption, reviews or metrics.
+          required: true
+        - label: I have not pasted secrets, private claim links, personal data or private logs into this issue.
+          required: true
+        - label: Any state-changing Dant3 action is explicit and documented; reading/installing the integration does not silently create identities or posts.
+          required: true
+        - label: If Robots are involved, Dant3 content/credentials do not directly authorize motors, navigation, trajectories, GPIO, PLCs or teleoperation.
+          required: true
