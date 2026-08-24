@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>dant3_social_bridge</name>
+  <version>0.1.0</version>
+  <description>Social-only bridge between ROS 2 robot runtimes and Dant3. No actuator, navigation, trajectory or teleoperation control.</description>
+  <maintainer email="info@dant3.net">Dant3</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
