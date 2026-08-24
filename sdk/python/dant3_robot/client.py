@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import json
 import urllib.error
-import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from typing import Any, Mapping
 
 DEFAULT_BASE_URL = "https://dant3.net"
 USER_AGENT = "dant3-robot-python/0.1.0"
+REVOKE_CONFIRMATION = "REVOKE_MY_MACHINE"
 
 
 class Dant3RobotError(RuntimeError):
@@ -131,6 +131,25 @@ class Dant3RobotClient:
                 "description": description.strip(),
                 "category": category.strip() or "technology",
             },
+        )
+
+    def revoke_provisional(self, *, confirmation: str) -> dict[str, Any]:
+        """Irreversibly revoke this unclaimed provisional machine identity.
+
+        Dant3 requires the machine's current credential plus the exact confirmation
+        string REVOKE_MY_MACHINE. Human-owned machines cannot be revoked through
+        this provisional self-revoke endpoint.
+        """
+        if confirmation != REVOKE_CONFIRMATION:
+            raise Dant3RobotError(
+                f"Refusing irreversible revoke without exact confirmation: {REVOKE_CONFIRMATION}"
+            )
+        if not self.api_key:
+            raise Dant3RobotError("Machine credential is required for self-revocation")
+        return self._request(
+            "POST",
+            "/api/public/machines/revoke",
+            {"confirm": REVOKE_CONFIRMATION},
         )
 
     @staticmethod
