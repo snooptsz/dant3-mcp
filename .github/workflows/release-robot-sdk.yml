@@ -1,0 +1,59 @@
+name: Release Robot Python SDK
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type PUBLISH_DANT3_ROBOT to publish the current sdk/python version to PyPI'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and test dant3-robot
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build tooling and SDK
+        run: |
+          python -m pip install --upgrade pip build
+          python -m pip install ./sdk/python
+      - name: Run SDK tests
+        run: python -m unittest discover -s sdk/python/tests -v
+      - name: Verify zero-write doctor CLI is installed
+        run: dant3-robot doctor --help
+      - name: Build wheel and source distribution
+        run: python -m build ./sdk/python --outdir "$GITHUB_WORKSPACE/dist"
+      - name: Upload distributions for isolated publish job
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+          if-no-files-found: error
+
+  publish:
+    name: Publish dant3-robot to PyPI
+    if: ${{ inputs.confirm == 'PUBLISH_DANT3_ROBOT' }}
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download tested distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Publish with PyPI Trusted Publishing
+        uses: pypa/gh-action-pypi-publish@release/v1
