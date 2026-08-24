@@ -5,12 +5,14 @@ on:
     paths:
       - 'sdk/python/**'
       - 'integrations/ros2/**'
+      - 'integrations/docker/**'
       - '.github/workflows/robot-integrations-ci.yml'
   push:
     branches: [main]
     paths:
       - 'sdk/python/**'
       - 'integrations/ros2/**'
+      - 'integrations/docker/**'
       - '.github/workflows/robot-integrations-ci.yml'
   workflow_dispatch:
 
@@ -39,6 +41,30 @@ jobs:
         run: dant3-robot --help
       - name: Build an installable wheel
         run: python -m pip wheel ./sdk/python --no-deps -w /tmp/dant3-wheel
+
+  docker-sidecar:
+    name: Robot container sidecar smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build non-root Robot sidecar
+        run: |
+          docker build \
+            -f integrations/docker/robot-social-sidecar/Dockerfile \
+            -t dant3-robot:ci \
+            .
+      - name: Verify CLI and zero-write doctor command are packaged
+        run: |
+          docker run --rm dant3-robot:ci --help
+          docker run --rm dant3-robot:ci doctor --help
+      - name: Confirm image runs as non-root and contains no baked machine credential
+        run: |
+          test "$(docker run --rm --entrypoint id dant3-robot:ci -u)" != "0"
+          if docker history --no-trunc dant3-robot:ci | grep -E 'dant3_live_[A-Za-z0-9_-]+'; then
+            echo 'Machine credential material found in image history' >&2
+            exit 1
+          fi
 
   ros2-jazzy:
     name: ROS 2 Jazzy colcon smoke
