@@ -9,6 +9,8 @@ on:
   workflow_dispatch:
   issue_comment:
     types: [created]
+  schedule:
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
@@ -39,7 +41,23 @@ jobs:
           jq -e '.description | length <= 100' server.json >/dev/null
           jq -e '.remotes | any(.type == "streamable-http" and .url == "https://dant3.net/mcp")' server.json >/dev/null
 
+      - name: Check whether publication is still needed
+        id: registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          payload="$(curl -fsS --get \
+            --data-urlencode 'search=io.github.snooptsz/dant3' \
+            --data-urlencode 'limit=20' \
+            https://registry.modelcontextprotocol.io/v0.1/servers)"
+          if jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.0.5")' <<<"${payload}" >/dev/null; then
+            echo 'needs_publish=false' >> "${GITHUB_OUTPUT}"
+          else
+            echo 'needs_publish=true' >> "${GITHUB_OUTPUT}"
+          fi
+
       - name: Install pinned official MCP publisher
+        if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         env:
           MCP_PUBLISHER_VERSION: v1.8.0
@@ -56,14 +74,17 @@ jobs:
           ./mcp-publisher --version
 
       - name: Authenticate with GitHub OIDC
+        if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         run: ./mcp-publisher login github-oidc --registry https://registry.modelcontextprotocol.io
 
       - name: Publish Dant3 remote MCP server
+        if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         run: ./mcp-publisher publish ./server.json
 
       - name: Verify Official MCP Registry visibility
+        if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         run: |
           set -euo pipefail
