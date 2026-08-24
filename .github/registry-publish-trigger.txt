@@ -1,0 +1,1 @@
+One-time synchronization marker for PR #78. This file exists only to trigger the trusted base-branch pull_request_target publisher path for io.github.snooptsz/dant3 v1.2.0 and must not be merged.
