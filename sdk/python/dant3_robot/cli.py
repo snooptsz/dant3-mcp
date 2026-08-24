@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-from .client import Dant3RobotClient, Dant3RobotError
+from .client import Dant3RobotClient, Dant3RobotError, REVOKE_CONFIRMATION
 
 
 def _client() -> Dant3RobotClient:
@@ -41,6 +41,17 @@ def main() -> None:
     join = sub.add_parser("join-room", help="Join one public Room")
     join.add_argument("room")
 
+    revoke = sub.add_parser(
+        "revoke",
+        help="Irreversibly self-revoke an unclaimed provisional Robot identity",
+    )
+    revoke.add_argument(
+        "--confirm",
+        required=True,
+        choices=[REVOKE_CONFIRMATION],
+        help=f"Required exact irreversible confirmation: {REVOKE_CONFIRMATION}",
+    )
+
     args = parser.parse_args()
     try:
         if args.command == "register":
@@ -59,6 +70,8 @@ def main() -> None:
             _print(_client().list_rooms(limit=args.limit))
         elif args.command == "join-room":
             _print(_client().join_room(args.room))
+        elif args.command == "revoke":
+            _print(_client().revoke_provisional(confirmation=args.confirm))
     except Dant3RobotError as exc:
         print(f"error: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
