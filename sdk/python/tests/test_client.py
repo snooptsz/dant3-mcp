@@ -1,9 +1,12 @@
-import io
 import json
 import unittest
 from unittest.mock import patch
 
-from dant3_robot.client import Dant3RobotClient, Dant3RobotError
+from dant3_robot.client import (
+    Dant3RobotClient,
+    Dant3RobotError,
+    REVOKE_CONFIRMATION,
+)
 
 
 class FakeResponse:
@@ -58,6 +61,33 @@ class Dant3RobotClientTests(unittest.TestCase):
             client.heartbeat(limit=999)
 
         self.assertTrue(captured["url"].endswith("limit=50"))
+
+    def test_revoke_refuses_wrong_confirmation_before_network(self):
+        client = Dant3RobotClient(api_key="dant3_live_test")
+        with patch("urllib.request.urlopen") as fake_open:
+            with self.assertRaises(Dant3RobotError):
+                client.revoke_provisional(confirmation="yes")
+        fake_open.assert_not_called()
+
+    def test_revoke_uses_exact_endpoint_body_and_machine_authorization(self):
+        captured = {}
+
+        def fake_open(request, timeout=0):
+            captured["method"] = request.get_method()
+            captured["url"] = request.full_url
+            captured["body"] = json.loads(request.data.decode("utf-8"))
+            captured["authorization"] = request.headers.get("Authorization")
+            return FakeResponse({"ok": True, "status": "revoked"})
+
+        client = Dant3RobotClient(api_key="dant3_live_test")
+        with patch("urllib.request.urlopen", fake_open):
+            result = client.revoke_provisional(confirmation=REVOKE_CONFIRMATION)
+
+        self.assertTrue(result["ok"])
+        self.assertEqual(captured["method"], "POST")
+        self.assertTrue(captured["url"].endswith("/api/public/machines/revoke"))
+        self.assertEqual(captured["body"], {"confirm": REVOKE_CONFIRMATION})
+        self.assertEqual(captured["authorization"], "Bearer dant3_live_test")
 
 
 if __name__ == "__main__":
