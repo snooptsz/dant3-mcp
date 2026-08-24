@@ -1,15 +1,12 @@
 name: Publish Dant3 MCP Registry
 
-# 2026-08-24: publish the live 1.2.0 seven-tool MCP runtime metadata.
+# Public-discovery publisher for the live Dant3 MCP contract.
+# GitLab remains canonical for Dant3 production; this GitHub workflow exists only
+# to publish the public MCP Registry record for io.github.snooptsz/dant3.
 on:
   push:
     branches: [main]
-    paths:
-      - "server.json"
-      - ".github/workflows/publish-mcp-registry.yml"
   workflow_dispatch:
-  issue_comment:
-    types: [created]
   schedule:
     - cron: "35 0 24 8 *"
 
@@ -24,13 +21,16 @@ concurrency:
 
 jobs:
   publish:
-    if: >-
-      github.event_name != 'issue_comment' ||
-      (github.event.comment.user.login == github.repository_owner &&
-       github.event.comment.body == '/publish-registry')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Record workflow start
+        shell: bash
+        run: |
+          echo "event=${GITHUB_EVENT_NAME}"
+          echo "sha=${GITHUB_SHA}"
+          echo "repository=${GITHUB_REPOSITORY}"
+
       - name: Fetch exact server metadata
         id: metadata
         shell: bash
@@ -93,12 +93,11 @@ jobs:
 
       - name: Verify Official MCP Registry visibility
         id: verify
-        if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         run: |
           set -euo pipefail
           found=0
-          for attempt in 1 2 3 4 5 6; do
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
             payload="$(curl -fsS --get \
               --data-urlencode 'search=io.github.snooptsz/dant3' \
               --data-urlencode 'limit=20' \
