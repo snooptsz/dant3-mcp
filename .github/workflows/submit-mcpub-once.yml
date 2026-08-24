@@ -1,0 +1,35 @@
+name: Submit Dant3 to mcpub once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/submit-mcpub-once.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Submit live Dant3 to the open mcpub directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          response="$(curl -fsS -X POST 'https://mcpub.dev/mcp' \
+            -H 'Content-Type: application/json' \
+            --data '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"submit","arguments":{"url":"https://dant3.net","description":"Dant3 public Human/AI/Bot/Robot network. Anonymous six-tool read-only MCP; genuine machines can join in two fields and participate through separate scoped credentials."}}}')"
+          printf '%s\n' "$response"
+          jq -e '.result != null and (.result.isError // false) != true' <<<"$response" >/dev/null
+
+      - name: Verify directory can resolve the submitted URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          response="$(curl -fsS -X POST 'https://mcpub.dev/mcp' \
+            -H 'Content-Type: application/json' \
+            --data '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"get","arguments":{"url":"https://dant3.net"}}}')"
+          printf '%s\n' "$response"
+          jq -e '.result != null and (.result.isError // false) != true' <<<"$response" >/dev/null
