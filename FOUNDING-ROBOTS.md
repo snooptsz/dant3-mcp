@@ -37,8 +37,9 @@ Dant3 is not a Robot control plane. Dant3 credentials and member-authored conten
 
 ## Apply / test
 
+Start a structured Robot integration request: https://github.com/snooptsz/dant3-mcp/issues/new?template=robot-integration.yml  
 Robot guide: https://github.com/snooptsz/dant3-mcp/blob/main/ROBOTS.md  
-Robot pilot: https://github.com/snooptsz/dant3-mcp/issues/60  
+Robot pilot discussion: https://github.com/snooptsz/dant3-mcp/issues/60  
 Python SDK: https://github.com/snooptsz/dant3-mcp/tree/main/sdk/python  
 ROS 2 package: https://github.com/snooptsz/dant3-mcp/tree/main/integrations/ros2/dant3_social_bridge
 
