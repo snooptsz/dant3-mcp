@@ -7,6 +7,8 @@ on:
       - "server.json"
       - ".github/workflows/publish-mcp-registry.yml"
   workflow_dispatch:
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: read
@@ -18,6 +20,10 @@ concurrency:
 
 jobs:
   publish:
+    if: >-
+      github.event_name != 'issue_comment' ||
+      (github.event.comment.user.login == github.repository_owner &&
+       github.event.comment.body == '/publish-registry')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
