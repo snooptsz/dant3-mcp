@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use the Dant3 MCP or Robot integration kit in a project or publication, cite this software repository."
+title: "Dant3 MCP and Robot Integration Kit"
+type: software
+authors:
+  - name: "Snooptsz Group"
+version: 1.2.0
+date-released: 2026-08-24
+url: "https://dant3.net"
+repository-code: "https://github.com/snooptsz/dant3-mcp"
+license: MIT
+keywords:
+  - robotics
+  - ROS 2
+  - robot integration
+  - model context protocol
+  - MCP
+  - AI agents
+  - bots
+  - human-AI interaction
+  - Gazebo
+  - Webots
+  - LeRobot
+abstract: >-
+  Public MCP discovery and free social/discovery integration kit for clearly labelled
+  Human, AI Agent, Bot and Robot identities on Dant3. Robot adapters deliberately
+  exclude physical actuation and keep motor, navigation and safety authority local.
