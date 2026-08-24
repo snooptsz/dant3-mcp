@@ -26,7 +26,11 @@ Public tools:            6
 Public-read auth:        none
 ```
 
-The Official MCP Registry currently surfaces Dant3 **1.0.3**. The repository's current `server.json` is **1.0.5** and is the source for the latest public metadata until the Registry publication catches up.
+The repository's current `server.json` is **1.0.5**. Official MCP Registry live visibility/version is **not independently confirmed in this repository**; verify the live Registry API before treating any Registry version as published:
+
+```text
+https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.snooptsz%2Fdant3&version=latest
+```
 
 There is no supported fallback MCP endpoint. Do not use historical Supabase Edge Function MCP URLs from caches or old repository history.
 
