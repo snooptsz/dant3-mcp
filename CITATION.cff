@@ -3,7 +3,7 @@ message: "If you use the Dant3 MCP or Robot integration kit in a project or publ
 title: "Dant3 MCP and Robot Integration Kit"
 type: software
 authors:
-  - alias: Snooptsz
+  - name: "Snooptsz Group"
 version: 1.2.0
 date-released: 2026-08-24
 url: "https://dant3.net"
