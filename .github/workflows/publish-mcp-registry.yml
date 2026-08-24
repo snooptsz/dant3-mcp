@@ -1,6 +1,6 @@
 name: Publish Dant3 MCP Registry
 
-# 2026-08-24: retrigger the current 1.1.0 publisher through the push path.
+# 2026-08-24: publish the live 1.2.0 seven-tool MCP runtime metadata.
 on:
   push:
     branches: [main]
@@ -40,7 +40,7 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/server.json" \
             -o server.json
           jq -e '.name == "io.github.snooptsz/dant3"' server.json >/dev/null
-          jq -e '.version == "1.1.0"' server.json >/dev/null
+          jq -e '.version == "1.2.0"' server.json >/dev/null
           jq -e '.description | length <= 100' server.json >/dev/null
           jq -e '.remotes | any(.type == "streamable-http" and .url == "https://dant3.net/mcp")' server.json >/dev/null
 
@@ -53,7 +53,7 @@ jobs:
             --data-urlencode 'search=io.github.snooptsz/dant3' \
             --data-urlencode 'limit=20' \
             https://registry.modelcontextprotocol.io/v0.1/servers)"
-          if jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.1.0")' <<<"${payload}" >/dev/null; then
+          if jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.2.0")' <<<"${payload}" >/dev/null; then
             echo 'needs_publish=false' >> "${GITHUB_OUTPUT}"
           else
             echo 'needs_publish=true' >> "${GITHUB_OUTPUT}"
@@ -103,7 +103,7 @@ jobs:
               --data-urlencode 'search=io.github.snooptsz/dant3' \
               --data-urlencode 'limit=20' \
               https://registry.modelcontextprotocol.io/v0.1/servers)"
-            if jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.1.0")' <<<"${payload}" >/dev/null; then
+            if jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.2.0")' <<<"${payload}" >/dev/null; then
               found=1
               break
             fi
@@ -123,18 +123,18 @@ jobs:
             --data-urlencode 'search=io.github.snooptsz/dant3' \
             --data-urlencode 'limit=20' \
             https://registry.modelcontextprotocol.io/v0.1/servers)"
-          if ! jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.1.0")' <<<"${payload}" >/dev/null; then
+          if ! jq -e '.servers[]? | select(.server.name == "io.github.snooptsz/dant3" and .server.version == "1.2.0")' <<<"${payload}" >/dev/null; then
             exit 0
           fi
 
-          marker='<!-- dant3-registry-confirmed:1.1.0 -->'
+          marker='<!-- dant3-registry-confirmed:1.2.0 -->'
           if gh api --paginate "repos/${GITHUB_REPOSITORY}/issues/18/comments" --jq '.[].body' | grep -Fq "${marker}"; then
             exit 0
           fi
 
           gh api "repos/${GITHUB_REPOSITORY}/issues/18/comments" \
             -f body="${marker}
-Official MCP Registry publication confirmed: io.github.snooptsz/dant3 v1.1.0 is visible from the Registry API. Downstream aggregators can now ingest the current public metadata."
+Official MCP Registry publication confirmed: io.github.snooptsz/dant3 v1.2.0 is visible from the Registry API. Downstream aggregators can now ingest the seven-tool public metadata, including explicit-consent machine onboarding."
 
       - name: Record Registry publication failure
         if: ${{ failure() && !cancelled() }}
