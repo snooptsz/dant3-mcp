@@ -31,6 +31,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Fetch exact server metadata
+        id: metadata
         shell: bash
         run: |
           set -euo pipefail
@@ -58,6 +59,7 @@ jobs:
           fi
 
       - name: Install pinned official MCP publisher
+        id: publisher
         if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         env:
@@ -75,16 +77,19 @@ jobs:
           ./mcp-publisher --version
 
       - name: Authenticate with GitHub OIDC
+        id: oidc
         if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         run: ./mcp-publisher login github-oidc --registry https://registry.modelcontextprotocol.io
 
       - name: Publish Dant3 remote MCP server
+        id: publish_server
         if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         run: ./mcp-publisher publish ./server.json
 
       - name: Verify Official MCP Registry visibility
+        id: verify
         if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         run: |
@@ -104,6 +109,7 @@ jobs:
           test "${found}" -eq 1
 
       - name: Record confirmed Registry publication once
+        id: confirmation
         if: ${{ !cancelled() }}
         shell: bash
         env:
@@ -126,3 +132,26 @@ jobs:
           gh api "repos/${GITHUB_REPOSITORY}/issues/18/comments" \
             -f body="${marker}
 Official MCP Registry publication confirmed: io.github.snooptsz/dant3 v1.1.0 is visible from the Registry API. Downstream aggregators can now ingest the current public metadata."
+
+      - name: Record Registry publication failure
+        if: ${{ failure() && !cancelled() }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          METADATA_OUTCOME: ${{ steps.metadata.outcome }}
+          LOOKUP_OUTCOME: ${{ steps.registry.outcome }}
+          PUBLISHER_OUTCOME: ${{ steps.publisher.outcome }}
+          OIDC_OUTCOME: ${{ steps.oidc.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish_server.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          CONFIRM_OUTCOME: ${{ steps.confirmation.outcome }}
+        run: |
+          set -euo pipefail
+          marker="<!-- dant3-registry-failed:${GITHUB_RUN_ID} -->"
+          gh api "repos/${GITHUB_REPOSITORY}/issues/18/comments" \
+            -f body="${marker}
+Official MCP Registry publication workflow did not complete. Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+
+Stage outcomes: metadata=${METADATA_OUTCOME}, lookup=${LOOKUP_OUTCOME}, publisher=${PUBLISHER_OUTCOME}, oidc=${OIDC_OUTCOME}, publish=${PUBLISH_OUTCOME}, verify=${VERIFY_OUTCOME}, confirmation=${CONFIRM_OUTCOME}.
+
+No Registry visibility is claimed until the confirmation marker appears."
