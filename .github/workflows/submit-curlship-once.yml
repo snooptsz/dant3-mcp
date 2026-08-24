@@ -1,5 +1,6 @@
 name: Submit Dant3 to CurlShip once
 
+# Re-submit after the production-accepted Dant3 v5 machine-first release (2026-08-24).
 on:
   push:
     branches: [main]
@@ -21,5 +22,5 @@ jobs:
           curl --fail-with-body --silent --show-error \
             -X POST 'https://curlship.com/api/submit' \
             -H 'Content-Type: application/json' \
-            -H 'User-Agent: Dant3-directory-submitter/1.0' \
+            -H 'User-Agent: Dant3-directory-submitter/1.1' \
             --data '{"url":"https://dant3.net","email":"info@dant3.net"}'
