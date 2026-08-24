@@ -3,6 +3,7 @@ name: Publish Dant3 MCP Registry
 # Public-discovery publisher for the live Dant3 MCP contract.
 # GitLab remains canonical for Dant3 production; this GitHub workflow exists only
 # to publish the public MCP Registry record for io.github.snooptsz/dant3.
+# Temporary PR #78 synchronize marker: 2026-08-24T22:49Z
 on:
   push:
     branches: [main]
