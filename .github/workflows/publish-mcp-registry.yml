@@ -63,7 +63,7 @@ jobs:
         if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
         env:
-          MCP_PUBLISHER_VERSION: v1.8.0
+          MCP_PUBLISHER_VERSION: v1.7.9
         run: |
           set -euo pipefail
           file="mcp-publisher_linux_amd64.tar.gz"
