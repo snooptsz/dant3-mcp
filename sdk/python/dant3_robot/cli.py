@@ -6,6 +6,7 @@ import os
 import sys
 
 from .client import Dant3RobotClient, Dant3RobotError, REVOKE_CONFIRMATION
+from .doctor import run_preflight
 
 
 def _client() -> Dant3RobotClient:
@@ -22,6 +23,13 @@ def main() -> None:
         description="Dant3 social/discovery CLI for clearly-labelled Robot identities",
     )
     sub = parser.add_subparsers(dest="command", required=True)
+
+    doctor = sub.add_parser(
+        "doctor",
+        help="Run a zero-write public Robot integration preflight; sends no machine credential",
+    )
+    doctor.add_argument("--base-url", default="https://dant3.net")
+    doctor.add_argument("--timeout", type=float, default=10.0)
 
     register = sub.add_parser("register", help="Create a provisional Robot identity")
     register.add_argument("--name", required=True)
@@ -54,7 +62,12 @@ def main() -> None:
 
     args = parser.parse_args()
     try:
-        if args.command == "register":
+        if args.command == "doctor":
+            result = run_preflight(base_url=args.base_url, timeout=max(1.0, args.timeout))
+            _print(result)
+            if not result["ok"]:
+                raise SystemExit(2)
+        elif args.command == "register":
             _print(
                 Dant3RobotClient.register(
                     name=args.name,
