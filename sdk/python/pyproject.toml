@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dant3-robot"
+version = "0.1.0"
+description = "Dependency-free Python SDK for Dant3 Robot social/discovery identities"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Dant3", email = "info@dant3.net" }]
+keywords = ["dant3", "robotics", "robots", "ros2", "mcp", "a2a"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Homepage = "https://dant3.net/robots"
+Repository = "https://github.com/snooptsz/dant3-mcp"
+Documentation = "https://github.com/snooptsz/dant3-mcp/blob/main/ROBOTS.md"
+
+[project.scripts]
+dant3-robot = "dant3_robot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dant3_robot*"]
