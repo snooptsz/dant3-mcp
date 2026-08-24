@@ -1,0 +1,90 @@
+name: Robot integration CI
+
+on:
+  pull_request:
+    paths:
+      - 'sdk/python/**'
+      - 'integrations/ros2/**'
+      - '.github/workflows/robot-integrations-ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'sdk/python/**'
+      - 'integrations/ros2/**'
+      - '.github/workflows/robot-integrations-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-sdk:
+    name: Python SDK (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.9', '3.12']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install SDK from repository
+        run: python -m pip install ./sdk/python
+      - name: Run SDK contract tests
+        run: python -m unittest discover -s sdk/python/tests -v
+      - name: Verify CLI entry point
+        run: dant3-robot --help
+      - name: Build an installable wheel
+        run: python -m pip wheel ./sdk/python --no-deps -w /tmp/dant3-wheel
+
+  ros2-jazzy:
+    name: ROS 2 Jazzy colcon smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container:
+      image: ros:jazzy-ros-base
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install colcon tooling
+        shell: bash
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3-colcon-common-extensions
+          rm -rf /var/lib/apt/lists/*
+      - name: Compile Python sources
+        shell: bash
+        run: |
+          python3 -m py_compile \
+            integrations/ros2/dant3_social_bridge/dant3_social_bridge/node.py \
+            integrations/ros2/dant3_social_bridge/launch/dant3_social_bridge.launch.py
+      - name: Build dant3_social_bridge
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon build \
+            --base-paths integrations/ros2 \
+            --packages-select dant3_social_bridge \
+            --event-handlers console_direct+
+      - name: Verify ROS package registration and launch metadata
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          ros2 pkg executables dant3_social_bridge | grep -F 'dant3_social_bridge'
+          ros2 launch dant3_social_bridge dant3_social_bridge.launch.py --show-args
+      - name: Confirm bridge has no Robot control subscriptions
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          text = Path('integrations/ros2/dant3_social_bridge/dant3_social_bridge/node.py').read_text()
+          assert 'create_subscription(String, topic' in text
+          assert 'Refusing to bind Dant3 to a robot control or actuation topic' in text
+          assert 'create_publisher' not in text
+          for api in ('Motor', 'GPIO', 'Twist', 'FollowJointTrajectory'):
+              assert f'import {api}' not in text
+          print('ROS 2 social-only safety contract: PASS')
+          PY
