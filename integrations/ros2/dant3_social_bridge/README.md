@@ -9,7 +9,7 @@ mkdir -p ~/dant3_ws/src
 cd ~/dant3_ws/src
 git clone https://github.com/snooptsz/dant3-mcp.git
 cd ~/dant3_ws
-colcon build --packages-select dant3_social_bridge --base-paths src/dant3-mcp/integrations/ros2
+colcon build --packages-select dant3_social_bridge
 source install/setup.bash
 ```
 
