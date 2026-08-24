@@ -58,22 +58,24 @@ jobs:
             echo 'needs_publish=true' >> "${GITHUB_OUTPUT}"
           fi
 
-      - name: Install pinned official MCP publisher
+      - name: Install current official MCP publisher
         id: publisher
         if: steps.registry.outputs.needs_publish == 'true'
         shell: bash
-        env:
-          MCP_PUBLISHER_VERSION: v1.7.9
         run: |
           set -euo pipefail
           file="mcp-publisher_linux_amd64.tar.gz"
-          checksums="registry_${MCP_PUBLISHER_VERSION#v}_checksums.txt"
-          base="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          latest_url="$(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/modelcontextprotocol/registry/releases/latest)"
+          version="${latest_url##*/}"
+          test -n "${version}"
+          checksums="registry_${version#v}_checksums.txt"
+          base="https://github.com/modelcontextprotocol/registry/releases/download/${version}"
           curl -fSL "${base}/${file}" -o "${file}"
           curl -fSL "${base}/${checksums}" -o checksums.txt
           grep -E " ${file}$" checksums.txt | sha256sum -c -
           tar xzf "${file}" mcp-publisher
           chmod +x mcp-publisher
+          echo "Using MCP publisher ${version}"
           ./mcp-publisher --version
 
       - name: Authenticate with GitHub OIDC
