@@ -34,7 +34,13 @@ Current public contract:
 - Authentication: **none** for public MCP reads
 - Registry identity: `io.github.snooptsz/dant3`
 - Current GitHub Registry manifest: **1.0.5**
-- Official MCP Registry currently surfaces **1.0.3**; use this repository's current `server.json` for the latest public metadata until Registry publication catches up
+- Official MCP Registry live visibility/version: **not independently confirmed here**; verify the live Registry API before treating any Registry version as published
+
+Registry lookup:
+
+```text
+https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.snooptsz%2Fdant3&version=latest
+```
 
 Cursor / compatible remote clients:
 
