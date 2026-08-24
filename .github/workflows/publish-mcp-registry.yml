@@ -14,7 +14,7 @@ on:
       - ".github/workflows/publish-mcp-registry.yml"
       - "server.json"
   schedule:
-    - cron: "35 0 24 8 *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
