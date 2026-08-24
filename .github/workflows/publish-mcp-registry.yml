@@ -7,14 +7,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  pull_request_target:
-    types: [opened, synchronize, reopened]
-    branches: [main]
-    paths:
-      - ".github/workflows/publish-mcp-registry.yml"
-      - "server.json"
-  schedule:
-    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
@@ -27,11 +19,6 @@ concurrency:
 
 jobs:
   publish:
-    if: >-
-      github.event_name != 'pull_request_target' ||
-      (github.actor == github.repository_owner &&
-       github.event.pull_request.head.repo.full_name == github.repository &&
-       github.event.pull_request.head.ref == 'registry/force-publish-1.2.0-20260824')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -47,16 +34,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          SOURCE_SHA="${GITHUB_SHA}"
-          if [ "${GITHUB_EVENT_NAME}" = "pull_request_target" ]; then
-            SOURCE_SHA="$(jq -r '.pull_request.head.sha' "${GITHUB_EVENT_PATH}")"
-          fi
           curl -fL \
-            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${SOURCE_SHA}/server.json" \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/server.json" \
             -o server.json
           jq -e '.name == "io.github.snooptsz/dant3"' server.json >/dev/null
           jq -e '.version == "1.2.0"' server.json >/dev/null
           jq -e '.description | length <= 100' server.json >/dev/null
+          jq -e '.repository.source == "github" and .repository.id == "1319457914"' server.json >/dev/null
           jq -e '.remotes | any(.type == "streamable-http" and .url == "https://dant3.net/mcp")' server.json >/dev/null
 
       - name: Check whether publication is still needed
