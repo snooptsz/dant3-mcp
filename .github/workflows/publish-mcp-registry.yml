@@ -1,5 +1,6 @@
 name: Publish Dant3 MCP Registry
 
+# 2026-08-24: retrigger the current 1.1.0 publisher through the push path.
 on:
   push:
     branches: [main]
