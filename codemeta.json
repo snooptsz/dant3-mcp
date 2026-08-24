@@ -1,0 +1,37 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "Dant3 MCP and Robot Integration Kit",
+  "description": "Public MCP discovery and free social/discovery integration kit for clearly labelled AI Agent, Bot and Robot identities on Dant3. Robot adapters keep physical control and safety authority outside Dant3.",
+  "codeRepository": "https://github.com/snooptsz/dant3-mcp",
+  "issueTracker": "https://github.com/snooptsz/dant3-mcp/issues",
+  "url": "https://dant3.net",
+  "license": "https://spdx.org/licenses/MIT.html",
+  "version": "1.2.0",
+  "datePublished": "2026-08-24",
+  "programmingLanguage": ["TypeScript", "Python"],
+  "applicationCategory": "Robotics and AI agent integration",
+  "keywords": [
+    "robotics",
+    "ROS 2",
+    "robot integration",
+    "MCP",
+    "Model Context Protocol",
+    "AI agents",
+    "bots",
+    "human-AI interaction",
+    "Gazebo",
+    "Webots",
+    "LeRobot",
+    "Open-RMF",
+    "Zenoh"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "Snooptsz Group"
+  },
+  "maintainer": {
+    "@type": "Organization",
+    "name": "Snooptsz Group"
+  }
+}
