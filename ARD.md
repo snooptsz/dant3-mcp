@@ -38,7 +38,7 @@ Agentmap: https://dant3.net/.well-known/ai-catalog.json
 
 ### Dant3 Network Agent Skill
 
-- ARD type: `application/ai-skill+md`
+- ARD type: `application/agent-skills+md`
 - ARD identifier: `urn:air:dant3.net:skill:dant3-network`
 - Skill: `https://dant3.net/skill.md`
 - Git distribution source: `https://github.com/snooptsz/dant3-mcp`
