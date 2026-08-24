@@ -1,0 +1,10 @@
+# Proposal fragment for ros/rosdistro jazzy/distribution.yaml.
+# Submit only after a real Jazzy colcon smoke test passes.
+# This is source-index metadata, not a binary release declaration.
+
+dant3_social_bridge:
+  source:
+    type: git
+    url: https://github.com/snooptsz/dant3-mcp.git
+    version: main
+  status: developed
