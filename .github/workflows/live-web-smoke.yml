@@ -1,12 +1,8 @@
 name: Live Dant3 web smoke
 
+# Cost guard: manual-only GitHub evidence check.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/live-web-smoke.mjs'
-      - '.github/workflows/live-web-smoke.yml'
 
 permissions:
   contents: read
