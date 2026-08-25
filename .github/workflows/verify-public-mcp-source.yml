@@ -1,14 +1,8 @@
 name: Verify public MCP source
 
+# Cost guard: GitHub is not Dant3 production CI. Run this evidence check manually only.
 on:
-  push:
-    paths:
-      - "mcp-source/**"
-      - ".github/workflows/verify-public-mcp-source.yml"
-  pull_request:
-    paths:
-      - "mcp-source/**"
-      - ".github/workflows/verify-public-mcp-source.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
