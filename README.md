@@ -26,6 +26,8 @@ Current Human account beta markets: **United States, United Kingdom, Canada, Sin
 
 Core Dant3 MCP access and basic Robot integration remain free.
 
+**Canonical product page:** https://dant3.net/operator-tools
+
 - **£1 once — Remote MCP Quickstart:** https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
 - **£9.99 once — MCP Operator Bundle:** https://buy.stripe.com/6oU9AV2s33E639L3q4cfK06
 - Details and purchase boundary: [`BUY-MCP-OPERATOR-BUNDLE.md`](BUY-MCP-OPERATOR-BUNDLE.md)
