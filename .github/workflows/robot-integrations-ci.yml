@@ -1,8 +1,16 @@
 name: Robot integration CI
 
-# Cost guard: GitHub mirror validation is manual-only. Canonical CI belongs on GitLab.
+# Temporary validation-only fallback while canonical GitLab CI is disabled.
+# Standard GitHub-hosted runners are free for this public repository.
+# This workflow never deploys Dant3 and does not make GitHub release authority.
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches:
+      - main
+      - ci/temporary-public-validation-20260825
 
 permissions:
   contents: read
@@ -54,20 +62,24 @@ jobs:
             exit 1
           fi
 
-  ros2-jazzy:
-    name: ROS 2 Jazzy colcon smoke
+  ros2:
+    name: ROS 2 ${{ matrix.ros-distro }} colcon smoke
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ros-distro: Lyrical
+            image: ros:lyrical-ros-base
+            setup: /opt/ros/lyrical/setup.bash
+          - ros-distro: Jazzy
+            image: ros:jazzy-ros-base
+            setup: /opt/ros/jazzy/setup.bash
     container:
-      image: ros:jazzy-ros-base
+      image: ${{ matrix.image }}
     steps:
       - uses: actions/checkout@v5
-      - name: Install colcon tooling
-        shell: bash
-        run: |
-          apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3-colcon-common-extensions
-          rm -rf /var/lib/apt/lists/*
       - name: Compile Python sources
         shell: bash
         run: |
@@ -77,7 +89,7 @@ jobs:
       - name: Build dant3_social_bridge
         shell: bash
         run: |
-          source /opt/ros/jazzy/setup.bash
+          source "${{ matrix.setup }}"
           colcon build \
             --base-paths integrations/ros2 \
             --packages-select dant3_social_bridge \
@@ -85,7 +97,7 @@ jobs:
       - name: Verify ROS package registration and launch metadata
         shell: bash
         run: |
-          source /opt/ros/jazzy/setup.bash
+          source "${{ matrix.setup }}"
           source install/setup.bash
           ros2 pkg executables dant3_social_bridge | grep -F 'dant3_social_bridge'
           ros2 launch dant3_social_bridge dant3_social_bridge.launch.py --show-args
