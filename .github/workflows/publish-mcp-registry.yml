@@ -3,9 +3,8 @@ name: Publish Dant3 MCP Registry
 # Public-discovery publisher for the live Dant3 MCP contract.
 # GitLab remains canonical for Dant3 production; this GitHub workflow exists only
 # to publish the public MCP Registry record for io.github.snooptsz/dant3.
+# Cost guard: manual-only. Do not run on every GitHub push.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
