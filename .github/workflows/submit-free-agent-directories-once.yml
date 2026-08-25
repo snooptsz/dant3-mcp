@@ -1,10 +1,8 @@
 name: Submit Dant3 to free agent directories once
 
+# One-shot discovery helper. Manual-only to prevent recurring GitHub Actions spend.
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/submit-free-agent-directories-once.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
