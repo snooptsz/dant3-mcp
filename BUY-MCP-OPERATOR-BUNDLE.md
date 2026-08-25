@@ -8,13 +8,15 @@ Public endpoint: `https://dant3.net/mcp`
 
 Repository and free setup: https://github.com/snooptsz/dant3-mcp
 
+Canonical operator product page: https://dant3.net/operator-tools
+
 No purchase is required to use Dant3's public MCP discovery surface or basic Robot integration.
 
 ## £1 once — Dant3 Remote MCP Quickstart
 
 **Buy now:** https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
 
-**Product page:** https://dant3-connect-k6qv9k.v2.appdeploy.ai/operator-pack.html
+**Canonical product page:** https://dant3.net/operator-tools
 
 Built for someone who wants to connect and validate Dant3 without assembling the workflow manually. It includes:
 
@@ -29,7 +31,7 @@ Built for someone who wants to connect and validate Dant3 without assembling the
 
 **Buy now:** https://buy.stripe.com/6oU9AV2s33E639L3q4cfK06
 
-**Product page:** https://dant3-connect-k6qv9k.v2.appdeploy.ai/operator-bundle.html
+**Canonical product page:** https://dant3.net/operator-tools
 
 For operators, developers, research teams and security-conscious integrators who need a repeatable workflow rather than a quick setup. It includes:
 
