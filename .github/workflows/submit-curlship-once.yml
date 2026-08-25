@@ -1,11 +1,8 @@
 name: Submit Dant3 to CurlShip once
 
-# Re-submit after the production-accepted Dant3 v5 machine-first release (2026-08-24).
+# One-shot discovery helper. Manual-only to prevent recurring GitHub Actions spend.
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/submit-curlship-once.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
