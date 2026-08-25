@@ -8,7 +8,9 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main]
+    branches:
+      - main
+      - ci/temporary-public-validation-20260825
 
 permissions:
   contents: read
