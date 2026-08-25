@@ -1,19 +1,7 @@
 name: Robot integration CI
 
+# Cost guard: GitHub mirror validation is manual-only. Canonical CI belongs on GitLab.
 on:
-  pull_request:
-    paths:
-      - 'sdk/python/**'
-      - 'integrations/ros2/**'
-      - 'integrations/docker/**'
-      - '.github/workflows/robot-integrations-ci.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'sdk/python/**'
-      - 'integrations/ros2/**'
-      - 'integrations/docker/**'
-      - '.github/workflows/robot-integrations-ci.yml'
   workflow_dispatch:
 
 permissions:
