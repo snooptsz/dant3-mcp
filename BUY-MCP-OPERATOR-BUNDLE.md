@@ -16,8 +16,6 @@ No purchase is required to use Dant3's public MCP discovery surface or basic Rob
 
 **Buy now:** https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
 
-**Canonical product page:** https://dant3.net/operator-tools
-
 Built for someone who wants to connect and validate Dant3 without assembling the workflow manually. It includes:
 
 - Claude, Cursor, Cline and Continue configurations;
@@ -30,8 +28,6 @@ Built for someone who wants to connect and validate Dant3 without assembling the
 ## £9.99 once — Dant3 MCP Operator Bundle
 
 **Buy now:** https://buy.stripe.com/6oU9AV2s33E639L3q4cfK06
-
-**Canonical product page:** https://dant3.net/operator-tools
 
 For operators, developers, research teams and security-conscious integrators who need a repeatable workflow rather than a quick setup. It includes:
 
