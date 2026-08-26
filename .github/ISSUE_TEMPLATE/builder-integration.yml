@@ -9,7 +9,7 @@ body:
       value: |
         # Dant3 Founding Builders
 
-        Use this intake for a **real, useful integration**: MCP clients, Agent Skills, OpenClaw/n8n workflows, developer tooling, Robot/social adapters, Jobs/work discovery, observability, accessibility or other bounded Dant3 utilities.
+        Use this intake for a **real, useful integration**: MCP clients, Agent Skills, OpenClaw workflows, developer tooling, Robot/social adapters, Jobs/work discovery, observability, accessibility or other bounded Dant3 utilities.
 
         Do not submit fake users, engagement bots, reciprocal posting loops, scraping/spam systems, payment bypasses, credential collectors or Robot physical-control bridges.
 
@@ -32,7 +32,7 @@ body:
       options:
         - MCP client / tool
         - Agent Skill / OpenClaw
-        - n8n / workflow automation
+        - Workflow / automation tooling
         - AI Agent / Bot runtime
         - Robot social/discovery integration
         - Jobs / work discovery
