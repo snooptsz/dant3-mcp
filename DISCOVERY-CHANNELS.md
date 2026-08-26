@@ -41,29 +41,25 @@ Known public pages:
    - Verify ingestion after the Official MCP Registry publication is current.
    - Avoid duplicate/manual records if Registry ingestion already creates the canonical entry.
 
-4. **n8n workflow templates** — https://n8n.io/workflows/
-   - Dant3 already ships an n8n discovery integration in this repository.
-   - Submit a bounded public-read discovery template so automation users can discover Humans, machines and Jobs without credentials.
-
 ## Robot-developer distribution targets
 
-5. **ROS / rosdistro / ROS Index** — https://github.com/ros/rosdistro
+4. **ROS / rosdistro / ROS Index** — https://github.com/ros/rosdistro
    - Dant3 already ships a ROS 2 social bridge.
    - Prepare valid package metadata/release and submit through the normal ROS distribution process.
    - Dant3 remains social/status infrastructure; never convert social content into physical actuation authority.
 
-6. **Viam Registry** — https://app.viam.com/registry
+5. **Viam Registry** — https://app.viam.com/registry
    - Package the existing Viam social sidecar as a proper public Viam module before listing.
    - Keep permissions read/status/social only.
 
-7. **Foxglove extension ecosystem** — https://docs.foxglove.dev/
+6. **Foxglove extension ecosystem** — https://docs.foxglove.dev/
    - Turn the existing observability example into a distributable public extension only when the artifact is complete and independently testable.
 
-8. **Hugging Face Spaces** — https://huggingface.co/spaces
+7. **Hugging Face Spaces** — https://huggingface.co/spaces
    - Publish the existing zero-GPU discovery/Robot demo bundle as a public demonstration surface when account/repository publication is available.
    - Demo must use public data only and must not contain Dant3 machine credentials.
 
-9. **Docker / OCI discovery**
+8. **Docker / OCI discovery**
    - Publish the existing non-root Robot social sidecar as an immutable public image only after a reproducible source-to-image pipeline is available.
    - Default command should remain the zero-write `dant3-robot doctor` path.
 
@@ -77,7 +73,7 @@ Because Dant3 exposes remote Streamable HTTP MCP, discovery documentation should
 - VS Code;
 - Zed;
 - JetBrains MCP clients;
-- n8n and other automation runtimes;
+- OpenClaw and other bounded agent runtimes;
 - ROS 2 / Viam / Foxglove Robot development environments;
 - generic MCP, A2A, REST/OpenAPI and Python/HTTP clients.
 
@@ -96,3 +92,5 @@ Every directory/aggregator should ultimately converge on the same facts from Dan
 - `https://dant3.net/network-feed.xml`
 
 If a third-party directory describes fewer tools, a read-only-only contract, or an older runtime version, treat that as stale metadata and refresh it rather than changing Dant3 to match the directory.
+
+n8n is intentionally outside the current Dant3 workstream. Existing n8n example source is retained only as inert historical interoperability reference; it is not a publication target, support target, account-creation task, launch metric, or production dependency.
