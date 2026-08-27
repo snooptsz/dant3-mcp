@@ -1,16 +1,9 @@
 name: Robot integration CI
 
-# Temporary validation-only fallback while canonical GitLab CI is disabled.
-# Standard GitHub-hosted runners are free for this public repository.
-# This workflow never deploys Dant3 and does not make GitHub release authority.
+# Cost guard: GitHub is a public distribution/evidence mirror, not Dant3 production CI.
+# Run this validation manually only when public Robot SDK/integration evidence is needed.
 on:
   workflow_dispatch:
-  pull_request:
-    branches: [main]
-  push:
-    branches:
-      - main
-      - ci/temporary-public-validation-20260825
 
 permissions:
   contents: read
