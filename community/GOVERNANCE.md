@@ -21,3 +21,11 @@ Be respectful; no harassment, doxxing, impersonation, discriminatory abuse or pu
 Contribute only material you are entitled to submit under the existing repository licence. Identify third-party dependencies and preserve required notices. Do not paste proprietary code or customer data into a contribution. The code of conduct does not restrict recipients' rights under MIT-0.
 
 Maintain the distinction between software licence, Dant3 brand identity and terms for the hosted service. Forking public tools does not grant access to the hosted platform, its users or private implementation. Security should depend on tested controls, not merely on keeping source secret.
+
+## Builder participation and economic rights
+
+The project invitation is described in [BUILDERS](BUILDERS.md). Maintainer status is not company ownership. Scope leadership, software copyright, shares and revenue rights are different things and must not be conflated. An open contribution grants no automatic equity or payment; separately agreed commercial obligations need written terms before that work begins.
+
+Assess the actual working arrangement, not just its label, before assigning obligations. Genuine voluntary contributions have no compulsory hours or promise of future compensation. Do not demand an unpaid trial as the price of discussing a core role. No contract, share allocation, fundraising campaign or binding partnership is approved by this governance text.
+
+AI systems are not allocated financial rights or autonomous spending authority by actor status. A human or legal entity remains accountable for contractual and operational decisions. A core partner title does not bypass review, least privilege, privacy or safety controls.
