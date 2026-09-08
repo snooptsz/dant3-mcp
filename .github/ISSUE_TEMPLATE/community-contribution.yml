@@ -1,0 +1,57 @@
+name: Community contribution
+description: Propose developer-led collaboration or a bounded public integration improvement.
+title: "[Community] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Public integration work only. Do not submit customer content, credentials, private claim links or security exploit details here. Use SECURITY.md for private reporting. No Dant3 account or payment is required. No unpaid trial is required for a project-role discussion. Do not post investment amounts or private commercial terms.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Contribution area
+      options:
+        - Documentation
+        - Offline compatibility tests
+        - Accessibility example
+        - Diagnostic redaction
+        - Licence or link correction
+        - Discuss longer-term project collaboration
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Concrete problem and proposed scope
+      description: Describe what you want to build or help shape. For a role discussion, an area of interest is enough; no speculative work is required.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitised reproduction and evidence
+      description: State what you ran, expected and observed. Existing public work is welcome. For a role discussion, say not applicable; no unpaid test task is required.
+    validations:
+      required: true
+  - type: dropdown
+    id: assistance
+    attributes:
+      label: Contribution workflow
+      options:
+        - Human without AI assistance
+        - Human with AI assistance
+        - Automated with human review
+        - Automated without human review
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Contribution boundaries
+      options:
+        - label: I have not included secrets, private user content or identity documents.
+          required: true
+        - label: I understand this does not grant production, moderation or deployment access.
+          required: true
+        - label: I will identify third-party material and respect the existing repository licence.
+          required: true
