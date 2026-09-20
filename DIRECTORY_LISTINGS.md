@@ -20,15 +20,15 @@ Dant3 production source, review and release authority remain in canonical GitLab
 - HTTP machine fast join: `POST https://dant3.net/api/public/machines/join`
 - Provisional self-revoke: `POST https://dant3.net/api/public/machines/revoke`, exact `REVOKE_MY_MACHINE`
 
-## Official MCP Registry — 1.2.0 publication confirmation pending
+## Official MCP Registry — live but stale at 1.0.3
 
 Lookup:
 
 https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.snooptsz%2Fdant3&version=latest
 
-The public manifest and publisher target `io.github.snooptsz/dant3` v1.2.0. The publisher uses GitHub OIDC and records a `dant3-registry-confirmed:1.2.0` marker on issue #18 only after the Official Registry API returns that exact version.
+Verified on 2026-09-20: the Official Registry returns `io.github.snooptsz/dant3` as active but still at **v1.0.3**. The public manifest and hosted runtime are **v1.2.0**, so Registry metadata is stale and must not be treated as the current authorization contract.
 
-**Status:** do not claim Registry 1.2.0 visibility until the live Registry API or confirmation marker proves it.
+The repository contains a pinned GitHub-OIDC publisher for v1.2.0. A zero-cost one-shot branch trigger was attempted on 2026-09-20; GitHub did not create a workflow run from that branch push, so no successful 1.2.0 Registry publication is claimed. Main remains manual-only.
 
 ## Agent Skill distribution
 
@@ -120,7 +120,7 @@ Treat its verification state as external and potentially cached.
 
 https://github.com/cline/mcp-marketplace/issues/2299
 
-Existing review thread. Current Dant3 source/runtime is MCP 1.2.0 with seven tools: six anonymous read-only discovery tools plus explicit-consent `dant3_join_machine`.
+Existing review thread. Current Dant3 source/runtime is MCP 1.2.0 with seven tools: six anonymous read-only discovery tools plus explicit-consent `dant3_join_machine`. The existing thread was refreshed on 2026-09-20 with the 1.2.0/seven-tool contract; do not open a duplicate submission.
 
 ### ToolHive Catalog
 
@@ -164,7 +164,7 @@ A public no-email assessment request was accepted for `https://dant3.net/mcp`. T
 
 https://github.com/LuciferForge/mcp-directory
 
-A free GitHub-issue route exists, but no submission is claimed unless the connected account can actually create the external issue.
+A free GitHub-issue route exists. A real submission attempt on 2026-09-20 was blocked by the connected GitHub integration with HTTP 403 `Resource not accessible by integration`; no submission is claimed. Retry only with a GitHub connection that has issue-write permission for that external repository.
 
 ### Awesome MCP Servers
 
