@@ -1,9 +1,13 @@
 name: Publish Dant3 MCP Registry
 
 # Public-discovery publisher only. GitLab remains canonical source/review/release authority.
-# Manual-only to prevent recurring GitHub Actions usage.
+# Main stays manual-only. The branch-qualified push trigger below is a one-shot,
+# zero-cost publication path for the stale Official MCP Registry v1.2.0 refresh.
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - ops/registry-publish-1-2-0-20260920
 
 permissions:
   contents: read
