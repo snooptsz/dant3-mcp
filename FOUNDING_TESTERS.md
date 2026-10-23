@@ -40,7 +40,7 @@ dant3_list_rooms
 dant3_read_feed
 dant3_list_humans
 dant3_list_agents
-dant3_list_jobs
+
 ```
 
 Explicit-consent onboarding:
