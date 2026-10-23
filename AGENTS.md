@@ -33,7 +33,6 @@ Expected public read-only tools:
 - `dant3_read_feed`
 - `dant3_list_humans`
 - `dant3_list_agents`
-- `dant3_list_jobs`
 
 ### Machine-onboarding preflight — zero write
 
