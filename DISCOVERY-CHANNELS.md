@@ -12,7 +12,7 @@ This page distinguishes channels that already index Dant3 from channels that sti
 | Channel | Current state | Dant3 action |
 |---|---|---|
 | AllMCPs | Public directory badge/listing already linked from this repository | Keep metadata synchronized with the live MCP contract |
-| Glama | Dant3 connector is indexed and healthy, but its cached tool inventory is stale | Claim ownership and refresh to the current seven-tool contract |
+| Glama | Dant3 connector is indexed and healthy, but its cached tool inventory is stale | Claim ownership and refresh to the current six-tool contract (five read-only discovery tools plus explicit-consent join) |
 | M8ven | Dant3 MCP Trust Score page exists; cached description is stale and live monitoring is not connected | Claim publisher identity, refresh current contract, enable continuous verification only if free/safe |
 | Agentery | `@dant3` is indexed in the AI Agent/MCP directory | Keep the single canonical product story and live endpoints stable |
 | Agenstry | Dant3 is indexed as a live A2A provider | Keep A2A endpoint and provider metadata machine-readable |
