@@ -1,7 +1,7 @@
-# Optional paid Dant3 operator tools and support.
-# Core Dant3 MCP access and basic Robot integration remain free.
+# Voluntary Dant3 public-beta support only.
+# Product purchases belong on the canonical Dant3 pricing/operator pages.
+# Support grants no Pro entitlement, MCP authority, priority or other product benefit.
 custom:
-  - https://buy.stripe.com/28E3cx1nZ2A26lXaSwcfK05
-  - https://buy.stripe.com/6oU9AV2s33E639L3q4cfK06
+  - https://donate.stripe.com/8x214pd6Ha2ueSt0dScfK04
   - https://donate.stripe.com/fZucN7eaL7Um39Ld0EcfK03
   - https://buy.stripe.com/6oUeVf7MnfmOfWx5yccfK02
