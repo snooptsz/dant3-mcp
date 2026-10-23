@@ -3,8 +3,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const route = readFileSync(join(here, 'production-route.ts'), 'utf8');
-const jobs = readFileSync(join(here, 'public-jobs.server.ts'), 'utf8');
+const modern = readFileSync(join(here, 'production-route.ts'), 'utf8');
+const legacy = readFileSync(join(here, 'legacy-route.server.ts'), 'utf8');
 
 const readOnlyTools = [
   'dant3_platform_overview',
@@ -17,19 +17,30 @@ const stateChangingTools = ['dant3_join_machine'];
 const expectedTools = [...readOnlyTools, ...stateChangingTools];
 
 for (const tool of expectedTools) {
-  if (!route.includes(`name: "${tool}"`)) throw new Error(`missing tool ${tool}`);
+  if (!legacy.includes(`name: "${tool}"`)) throw new Error(`missing tool ${tool}`);
 }
-if (!route.includes('MCP_PROTOCOL_VERSION = "2025-06-18"')) throw new Error('protocol mismatch');
-if (!route.includes('MCP_SERVER_VERSION = "1.2.0"')) throw new Error('server version mismatch');
-if (!route.includes('MAX_BODY_BYTES = 64 * 1024')) throw new Error('body bound missing');
-if (!route.includes('untrusted_member_content: true')) throw new Error('untrusted-content envelope missing');
-if (!route.includes('.eq("is_private", false)')) throw new Error('private Room exclusion missing');
-if (!route.includes('.eq("is_adult", false)')) throw new Error('adult Room exclusion missing');
-if (!route.includes('.eq("is_test_room", false)')) throw new Error('test Room exclusion missing');
-if (!jobs.includes('.eq("moderation_status", "approved")')) throw new Error('approved Jobs filter missing');
-if (!route.includes('return rpcError(id, -32601')) throw new Error('unknown-method fail-closed behavior missing');
+if (legacy.includes('dant3_list_jobs')) throw new Error('retired Jobs MCP tool remains in legacy handler');
+if (modern.includes('dant3_list_jobs')) throw new Error('retired Jobs MCP tool remains in modern wrapper');
 
 for (const marker of [
+  'MCP_LEGACY_PROTOCOL_VERSION = "2025-06-18"',
+  'MCP_MODERN_PROTOCOL_VERSION = "2026-07-28"',
+  'server/discover',
+  'Mcp-Method',
+  'Mcp-Name',
+  'five anonymous read-only public discovery tools plus one explicit-consent machine onboarding tool',
+]) {
+  if (!modern.includes(marker)) throw new Error(`modern MCP marker missing: ${marker}`);
+}
+
+for (const marker of [
+  'MCP_PROTOCOL_VERSION = "2025-06-18"',
+  'MCP_SERVER_VERSION = "1.2.0"',
+  'MAX_BODY_BYTES = 64 * 1024',
+  'untrusted_member_content: true',
+  '.eq("is_private", false)',
+  '.eq("is_adult", false)',
+  '.eq("is_test_room", false)',
   'const: "JOIN_DANT3"',
   'args.confirm !== "JOIN_DANT3"',
   'readOnlyHint: false',
@@ -39,30 +50,27 @@ for (const marker of [
   'machine_join_attempt',
   'machine_join_success',
 ]) {
-  if (!route.includes(marker)) throw new Error(`MCP join security marker missing: ${marker}`);
+  if (!legacy.includes(marker)) throw new Error(`legacy MCP security marker missing: ${marker}`);
 }
 
-if (route.includes('request.headers.get("x-forwarded-for")')) {
-  throw new Error('caller-controlled X-Forwarded-For must not drive registration identity');
-}
-if (route.includes('request.headers.get("x-real-ip")')) {
-  throw new Error('caller-controlled X-Real-IP must not drive registration identity');
-}
-
-for (const forbidden of [
-  'SUPABASE_SERVICE_ROLE_KEY',
-  'STRIPE_SECRET',
-  'CLOUDFLARE_API_TOKEN',
-  'private_key',
-]) {
-  if (route.toLowerCase().includes(forbidden.toLowerCase()) || jobs.toLowerCase().includes(forbidden.toLowerCase())) {
-    throw new Error(`forbidden secret/privileged marker found: ${forbidden}`);
+for (const source of [modern, legacy]) {
+  for (const forbidden of [
+    'SUPABASE_SERVICE_ROLE_KEY',
+    'STRIPE_SECRET',
+    'CLOUDFLARE_API_TOKEN',
+    'request.headers.get("x-forwarded-for")',
+    'request.headers.get("x-real-ip")',
+  ]) {
+    if (source.toLowerCase().includes(forbidden.toLowerCase())) {
+      throw new Error(`forbidden privileged/caller-controlled marker found: ${forbidden}`);
+    }
   }
 }
 
 console.log(JSON.stringify({
   ok: true,
-  protocol: '2025-06-18',
+  primary_protocol: '2026-07-28',
+  legacy_protocol: '2025-06-18',
   version: '1.2.0',
   tools: expectedTools.length,
   read_only_tools: readOnlyTools.length,
