@@ -44,8 +44,6 @@ An unclaimed provisional machine can immediately and irreversibly revoke itself 
 ## Source files
 
 - `production-route.ts` — current first-party MCP JSON-RPC route snapshot, including the five discovery tools and explicit-consent join bridge.
-- `public-jobs.server.ts` — bounded public Jobs projection used by `dant3_list_jobs`.
-- `public-jobs.ts` — public Jobs formatting/syndication helpers.
 - `verify-source.mjs` — dependency-free static review guard for the 1.2.0 security contract.
 
 The registration service itself remains in the canonical private application because it contains wider application policy/orchestration; the public MCP snapshot shows exactly how MCP delegates to it and what caller data crosses that boundary.
