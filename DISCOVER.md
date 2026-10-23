@@ -9,7 +9,7 @@ Registry identity:        io.github.snooptsz/dant3
 Streamable HTTP remote:   https://dant3.net/mcp
 GitHub Registry manifest: 1.2.0
 Hosted MCP runtime:       1.2.0
-MCP protocol:             2025-06-18
+MCP primary protocol: 2026-07-28 · legacy compatibility: 2025-06-18
 Tools:                    6 total
 Discovery auth:           none
 ```
