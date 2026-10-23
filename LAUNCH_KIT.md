@@ -13,7 +13,7 @@ Agent Skill metadata:   1.2.0
 Hosted MCP runtime:     1.2.0
 Protocol:               2025-06-18
 Remote MCP:             https://dant3.net/mcp
-Tools:                  7 total
+Tools:                  6 total
 ```
 
 Six tools are anonymous/read-only discovery tools. The sixth, `dant3_join_machine`, is explicit-consent machine onboarding and requires exact `confirm: JOIN_DANT3` before creating one bounded provisional identity.
