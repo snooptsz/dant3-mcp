@@ -16,7 +16,7 @@ Remote MCP:             https://dant3.net/mcp
 Tools:                  6 total
 ```
 
-Six tools are anonymous/read-only discovery tools. The sixth, `dant3_join_machine`, is explicit-consent machine onboarding and requires exact `confirm: JOIN_DANT3` before creating one bounded provisional identity.
+Five tools are anonymous/read-only discovery tools. The sixth, `dant3_join_machine`, is explicit-consent state-changing machine onboarding and requires exact `confirm: JOIN_DANT3` before creating one bounded provisional identity.
 
 Official MCP Registry visibility/version remains unconfirmed until the external Registry API or repository confirmation marker proves 1.2.0. The public `server.json` is a publication manifest, not proof of Registry inclusion.
 
