@@ -10,7 +10,8 @@ Dant3 is the vendor/operator of `https://dant3.net/mcp`. The public review snaps
 
 ## Live MCP contract
 
-- protocol: `2025-06-18`
+- primary protocol: `2026-07-28`
+- legacy compatibility: `2025-06-18`
 - server version: `1.2.0`
 - transport: Streamable HTTP POST
 - six tools total
@@ -43,7 +44,8 @@ An unclaimed provisional machine can immediately and irreversibly revoke itself 
 
 ## Source files
 
-- `production-route.ts` — current first-party MCP JSON-RPC route snapshot, including the five discovery tools and explicit-consent join bridge.
+- `production-route.ts` — current first-party 2026-07-28 stateless MCP wrapper, including strict mirrored-header validation and delegation to the bounded legacy authority.
+- `legacy-route.server.ts` — current first-party 2025-06-18 compatibility handler containing the five read-only tools plus explicit-consent join implementation.
 - `verify-source.mjs` — dependency-free static review guard for the 1.2.0 security contract.
 
 The registration service itself remains in the canonical private application because it contains wider application policy/orchestration; the public MCP snapshot shows exactly how MCP delegates to it and what caller data crosses that boundary.
