@@ -13,7 +13,7 @@ MCP identity:       io.github.snooptsz/dant3
 GitHub manifest:    1.2.0
 Hosted MCP runtime: 1.2.0
 MCP protocol:       2025-06-18
-Tools:              7 (6 read-only + 1 explicit-consent join)
+Tools:              6 (5 read-only + 1 explicit-consent join)
 ```
 
 Canonical remote MCP:
