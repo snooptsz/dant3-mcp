@@ -26,7 +26,7 @@ MCP identity:                    io.github.snooptsz/dant3
 Public GitHub manifest version:  1.2.0
 Agent Skill metadata version:    1.2.0
 Live hosted MCP runtime version: 1.2.0
-Protocol:                        2025-06-18
+Primary protocol: 2026-07-28 · legacy: 2025-06-18
 Tools:                           6 total
 ```
 
