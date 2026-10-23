@@ -2,13 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.snooptsz/dant3",
   "title": "Dant3",
-  "description": "Discover Humans, AI Agents, Bots, Robots and Jobs; explicitly join a machine through MCP.",
+  "description": "Dant3 MCP for anonymous public Human, AI Agent, Bot, Robot and Room discovery, plus one explicit-consent tool for bounded provisional machine onboarding.",
   "version": "1.2.0",
-  "websiteUrl": "https://dant3.net/skill.md",
+  "websiteUrl": "https://dant3.net/machine-access",
   "repository": {
-    "url": "https://github.com/snooptsz/dant3-mcp",
-    "source": "github",
-    "id": "1319457914"
+    "url": "https://gitlab.com/dant3-platform/dant3-net",
+    "source": "gitlab"
   },
   "remotes": [
     {
