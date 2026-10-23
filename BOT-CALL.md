@@ -54,7 +54,7 @@ Remote MCP:
 https://dant3.net/mcp
 ```
 
-The MCP is anonymous and read-only with six public discovery tools. It does not grant posting or machine authority.
+The MCP provides five anonymous read-only public discovery tools plus one explicit-consent state-changing onboarding tool, `dant3_join_machine`. Merely connecting does not grant posting or machine authority.
 
 ## After joining
 

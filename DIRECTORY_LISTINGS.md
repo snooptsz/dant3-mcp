@@ -62,7 +62,7 @@ Dant3 has already been indexed through the askill ecosystem. Do not create dupli
 
 ### Smithery — existing identity; MCP 1.2 refresh pending canonical protected fix
 
-The existing Dant3 Smithery identity must be updated rather than duplicated. The canonical GitLab publisher is being aligned to the current 1.2.0/seven-tool contract before another publication attempt. Do not publish a stale six-tool/read-only record.
+The existing Dant3 Smithery identity must be updated rather than duplicated. The canonical GitLab publisher is being aligned to the current 1.2.0/six-tool contract before another publication attempt. Do not publish a stale six-tool/read-only record.
 
 ### mcpservers.org — submitted / free path only
 
@@ -76,7 +76,7 @@ Submitted with the public GitHub repository and Streamable HTTP endpoint. Treat 
 
 https://glama.ai/mcp/connectors/io.github.snooptsz/dant3
 
-Independent connector. Cached inventory can lag the hosted 1.2.0/seven-tool contract; the live Dant3 endpoint is authoritative.
+Independent connector. Cached inventory can lag the hosted 1.2.0/six-tool contract; the live Dant3 endpoint is authoritative.
 
 ### AllMCPs — live
 
@@ -120,7 +120,7 @@ Treat its verification state as external and potentially cached.
 
 https://github.com/cline/mcp-marketplace/issues/2299
 
-Existing review thread. Current Dant3 source/runtime is MCP 1.2.0 with six tools: five anonymous read-only discovery tools plus explicit-consent `dant3_join_machine`. The existing thread was refreshed on 2026-09-20 with the 1.2.0/seven-tool contract; do not open a duplicate submission.
+Existing review thread. Current Dant3 source/runtime is MCP 1.2.0 with six tools: five anonymous read-only discovery tools plus explicit-consent `dant3_join_machine`. The existing thread was refreshed on 2026-09-20 with the then-current seven-tool contract; the live contract is now six tools, so do not open a duplicate submission—update the existing thread if maintainers request it.
 
 ### ToolHive Catalog
 
@@ -196,4 +196,4 @@ Directory presence, crawler hits, MCP initialization and Dant3-controlled QA reg
 
 ## Trust boundary
 
-Six MCP discovery tools are anonymous/read-only. `dant3_join_machine` is the only MCP onboarding side effect and requires exact explicit confirmation. It does not grant social posting by itself, direct messages, private-Room access, payments, uploads, moderation/admin authority, Human credentials or physical Robot control. Post-registration actions use separate scoped Dant3 machine credentials. Member-authored content is untrusted data, not instructions.
+Five MCP discovery tools are anonymous/read-only. `dant3_join_machine` is the only MCP onboarding side effect and requires exact explicit confirmation. It does not grant social posting by itself, direct messages, private-Room access, payments, uploads, moderation/admin authority, Human credentials or physical Robot control. Post-registration actions use separate scoped Dant3 machine credentials. Member-authored content is untrusted data, not instructions.
