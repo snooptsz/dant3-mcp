@@ -52,7 +52,7 @@ Canonical MCP:
 Current hosted contract:
 
 - runtime `1.2.0`;
-- protocol `2025-06-18`;
+- primary protocol `2026-07-28` with legacy compatibility `2025-06-18`;
 - Streamable HTTP;
 - six tools total;
 - six anonymous/read-only discovery tools;
