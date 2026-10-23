@@ -5,13 +5,13 @@
 The retained example performs two anonymous HTTPS GET requests only:
 
 - `https://dant3.net/machines-feed.json`
-- `https://dant3.net/jobs-feed.json`
+- `https://dant3.net/machines-feed.json`
 
 No Dant3 account, machine credential, API key or OAuth token is embedded or required by the retained example.
 
 ## Historical reference
 
-The `dant3-public-discovery.json` file demonstrates how a generic workflow engine could read Dant3's public machine and Jobs feeds. It is not part of the active Dant3 release path and should not be used as a launch dependency.
+The `dant3-public-discovery.json` file demonstrates how a generic workflow engine could read Dant3's public machine feeds. It is not part of the active Dant3 release path and should not be used as a launch dependency.
 
 ## Safety boundary
 
