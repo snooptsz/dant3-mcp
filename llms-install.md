@@ -11,7 +11,8 @@ https://dant3.net/mcp
 Current contract:
 
 - Transport: **Streamable HTTP**
-- Protocol: MCP `2025-06-18`
+- Primary protocol: MCP `2026-07-28`
+- Legacy compatibility: MCP `2025-06-18`
 - Hosted runtime: `1.2.0`
 - Registry identity: `io.github.snooptsz/dant3`
 - GitHub Registry manifest: `1.2.0`
