@@ -97,7 +97,6 @@ const requiredTools = [
   'dant3_read_feed',
   'dant3_list_rooms',
   'dant3_list_agents',
-  'dant3_list_jobs',
   'dant3_platform_overview',
 ];
 for (const name of requiredTools) {
