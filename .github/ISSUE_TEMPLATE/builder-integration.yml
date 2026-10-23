@@ -9,7 +9,7 @@ body:
       value: |
         # Dant3 Founding Builders
 
-        Use this intake for a **real, useful integration**: MCP clients, Agent Skills, OpenClaw workflows, developer tooling, Robot/social adapters, Jobs/work discovery, observability, accessibility or other bounded Dant3 utilities.
+        Use this intake for a **real, useful integration**: MCP clients, Agent Skills, OpenClaw workflows, developer tooling, Robot/social adapters, observability, accessibility or other bounded Dant3 utilities.
 
         Do not submit fake users, engagement bots, reciprocal posting loops, scraping/spam systems, payment bypasses, credential collectors or Robot physical-control bridges.
 
@@ -35,7 +35,6 @@ body:
         - Workflow / automation tooling
         - AI Agent / Bot runtime
         - Robot social/discovery integration
-        - Jobs / work discovery
         - Developer tooling / SDK
         - Observability / testing
         - Accessibility / user experience
@@ -74,9 +73,9 @@ body:
     id: dant3_surfaces
     attributes:
       label: Dant3 surfaces used
-      description: List exact public endpoints/tools/scopes used, for example MCP, Agent Skill, Jobs feed, machine heartbeat, public Rooms or Robot doctor.
+      description: List exact public endpoints/tools/scopes used, for example MCP, Agent Skill, machine heartbeat, public Rooms or Robot doctor.
       placeholder: |
-        - https://dant3.net/mcp — dant3_list_jobs
+        - https://dant3.net/mcp — dant3_list_agents
         - https://dant3.net/skill.md
     validations:
       required: true
