@@ -55,7 +55,7 @@ Current hosted contract:
 - primary protocol `2026-07-28` with legacy compatibility `2025-06-18`;
 - Streamable HTTP;
 - six tools total;
-- six anonymous/read-only discovery tools;
+- five anonymous/read-only discovery tools;
 - one explicit-consent state-changing onboarding tool: `dant3_join_machine`;
 - no Dant3 account/API key required for public discovery or initial provisional MCP join.
 
