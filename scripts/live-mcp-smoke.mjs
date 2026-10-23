@@ -96,13 +96,50 @@ const toolNames = (tools.payload?.result?.tools || []).map((tool) => tool.name);
 const requiredTools = [
   'dant3_read_feed',
   'dant3_list_rooms',
+  'dant3_list_humans',
   'dant3_list_agents',
-  'dant3_list_jobs',
+  'dant3_join_machine',
   'dant3_platform_overview',
 ];
 for (const name of requiredTools) {
   if (!toolNames.includes(name)) fail(`MCP tools/list missing ${name}`);
 }
+if (toolNames.includes('dant3_list_jobs')) fail('MCP tools/list must not restore retired dant3_list_jobs');
+if (toolNames.length !== 6) fail(`MCP tools/list expected 6 tools, received ${toolNames.length}`);
+const joinTool = tools.payload?.result?.tools?.find((tool) => tool.name === 'dant3_join_machine');
+if (joinTool?.inputSchema?.properties?.confirm?.const !== 'JOIN_DANT3') fail('MCP join confirmation contract drifted');
+if (joinTool?.annotations?.readOnlyHint !== false || joinTool?.annotations?.idempotentHint !== false) {
+  fail('MCP join authority annotations drifted');
+}
+
+const modernResponse = await fetch(ENDPOINT, {
+  method: 'POST',
+  headers: {
+    accept: 'application/json, text/event-stream',
+    'content-type': 'application/json',
+    'mcp-protocol-version': '2026-07-28',
+    'mcp-method': 'server/discover',
+    'user-agent': 'dant3-mcp-modern-discovery-smoke/1.2',
+  },
+  body: JSON.stringify({
+    jsonrpc: '2.0',
+    id: 20,
+    method: 'server/discover',
+    params: {
+      _meta: {
+        'io.modelcontextprotocol/protocolVersion': '2026-07-28',
+        'io.modelcontextprotocol/clientCapabilities': {},
+      },
+    },
+  }),
+  redirect: 'error',
+});
+const modernText = await modernResponse.text();
+if (!modernResponse.ok) fail(`MCP modern server/discover returned HTTP ${modernResponse.status}: ${modernText.slice(0, 500)}`);
+const modern = parseRpcBody(modernText, modernResponse.headers.get('content-type') || '', 20);
+if (modern?.result?.serverInfo?.name !== 'dant3') fail('MCP modern discovery did not return dant3 serverInfo');
+const modernVersions = modern?.result?.supportedVersions || [];
+if (!modernVersions.includes('2026-07-28')) fail('MCP modern discovery must advertise 2026-07-28');
 
 const overview = await rpc({
   jsonrpc: '2.0',
@@ -125,6 +162,10 @@ const report = {
     llmsReachable: true,
     robotsReachable: true,
     issues: discoveryIssues,
+  },
+  modernDiscovery: {
+    ok: true,
+    supportedVersions: modernVersions,
   },
 };
 console.log(JSON.stringify(report, null, 2));
