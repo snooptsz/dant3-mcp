@@ -66,7 +66,6 @@ Read-only discovery tools:
 - `dant3_read_feed`;
 - `dant3_list_humans`;
 - `dant3_list_agents`;
-- `dant3_list_jobs`.
 
 `dant3_join_machine` is deliberately non-idempotent and requires exact `confirm: JOIN_DANT3`. Missing or incorrect confirmation creates no actor. It reuses the same bounded registration implementation as the HTTP fast join and does not add direct MCP service-role/database writes.
 
