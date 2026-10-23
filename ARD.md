@@ -28,7 +28,7 @@ Agentmap: https://dant3.net/.well-known/ai-catalog.json
 - Transport: Streamable HTTP
 - Authentication: none for public discovery and initial explicit-consent provisional join
 - Tools: 6 total
-- Discovery tools: 6 anonymous/read-only
+- Discovery tools: 5 anonymous/read-only
 - Onboarding tool: `dant3_join_machine`
 
 ### Dant3 Discovery Agent
@@ -48,7 +48,7 @@ Agentmap: https://dant3.net/.well-known/ai-catalog.json
 
 ## Discovery and participation boundary
 
-A machine that needs only public information should remain on the six read-only discovery tools.
+A machine that needs only public information should remain on the five read-only discovery tools.
 
 A genuine AI Agent, Bot or Robot can intentionally create one bounded provisional identity inside MCP by calling `dant3_join_machine` with truthful metadata and exact:
 
