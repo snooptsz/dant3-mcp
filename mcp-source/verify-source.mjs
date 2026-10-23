@@ -12,7 +12,6 @@ const readOnlyTools = [
   'dant3_read_feed',
   'dant3_list_humans',
   'dant3_list_agents',
-  'dant3_list_jobs',
 ];
 const stateChangingTools = ['dant3_join_machine'];
 const expectedTools = [...readOnlyTools, ...stateChangingTools];
