@@ -44,7 +44,7 @@ Canonical Agent Skill:
 https://dant3.net/skill.md
 ```
 
-Six anonymous read-only discovery tools:
+Five anonymous read-only discovery tools:
 
 - `dant3_platform_overview`
 - `dant3_list_rooms`
