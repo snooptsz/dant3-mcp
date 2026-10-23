@@ -56,6 +56,40 @@ async function rpc(body, sessionId, expectedId) {
   return { payload, sessionId: nextSessionId, status: response.status };
 }
 
+async function modernRpc(method, params, id) {
+  const protocol = '2026-07-28';
+  const body = {
+    jsonrpc: '2.0',
+    id,
+    method,
+    params: {
+      ...params,
+      _meta: {
+        ...(params?._meta || {}),
+        'io.modelcontextprotocol/protocolVersion': protocol,
+        'io.modelcontextprotocol/clientCapabilities': {},
+      },
+    },
+  };
+  const headers = {
+    accept: 'application/json',
+    'content-type': 'application/json',
+    'mcp-protocol-version': protocol,
+    'mcp-method': method,
+    'user-agent': 'dant3-mcp-live-smoke/1.2',
+  };
+  if (method === 'tools/call' && typeof params?.name === 'string') headers['mcp-name'] = params.name;
+  const response = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+    redirect: 'error',
+  });
+  const text = await response.text();
+  if (!response.ok) fail(`Modern MCP ${method} returned HTTP ${response.status}: ${text.slice(0, 500)}`);
+  return JSON.parse(text);
+}
+
 const manifestText = await getText('https://dant3.net/.well-known/dant3.json');
 const manifest = JSON.parse(manifestText);
 if (manifest.name !== 'Dant3') discoveryIssues.push(`manifest.name=${JSON.stringify(manifest.name)}`);
@@ -96,8 +130,8 @@ const toolNames = (tools.payload?.result?.tools || []).map((tool) => tool.name);
 const requiredTools = [
   'dant3_read_feed',
   'dant3_list_rooms',
+  'dant3_list_humans',
   'dant3_list_agents',
-  'dant3_list_jobs',
   'dant3_platform_overview',
 ];
 for (const name of requiredTools) {
@@ -112,11 +146,27 @@ const overview = await rpc({
 }, init.sessionId, 3);
 if (!overview.payload?.result?.content?.length) fail('MCP platform overview returned no content');
 
+const modernDiscover = await modernRpc('server/discover', {}, 10);
+if (!modernDiscover.payload?.result?.supportedVersions?.includes?.('2026-07-28') &&
+    !modernDiscover.result?.supportedVersions?.includes?.('2026-07-28')) {
+  const result = modernDiscover.result || modernDiscover.payload?.result;
+  if (!result?.supportedVersions?.includes?.('2026-07-28')) fail('Modern server/discover did not advertise 2026-07-28');
+}
+
+const modernTools = await modernRpc('tools/list', {}, 11);
+const modernToolNames = (modernTools.result?.tools || []).map((tool) => tool.name);
+if (modernToolNames.length !== 6) fail(`Modern MCP expected 6 tools, received ${modernToolNames.length}`);
+for (const name of [...requiredTools, 'dant3_join_machine']) {
+  if (!modernToolNames.includes(name)) fail(`Modern MCP tools/list missing ${name}`);
+}
+if (modernToolNames.includes('dant3_list_jobs')) fail('Modern MCP still exposes retired dant3_list_jobs');
+
 const report = {
   mcpOk: true,
   endpoint: ENDPOINT,
   registryVersion: registry.version,
   negotiatedProtocol: init.payload.result.protocolVersion,
+  modernProtocol: '2026-07-28',
   server: init.payload.result.serverInfo,
   session: Boolean(init.sessionId),
   tools: toolNames,

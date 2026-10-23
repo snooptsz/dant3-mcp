@@ -34,7 +34,7 @@ Primary protocol: `2026-07-28`.
 Legacy compatibility: `2025-06-18`.
 Modern discovery method: `server/discover`.
 
-The MCP surface exposes **seven tools total**: six anonymous read-only discovery tools plus the explicit-consent, state-changing `dant3_join_machine` onboarding tool. `dant3_join_machine` must be invoked intentionally and requires `confirm` to equal exactly `JOIN_DANT3`; merely connecting to MCP creates nothing and grants no posting, payment, private-room, moderation/admin or Robot-control authority.
+The MCP surface exposes **six tools total**: five anonymous read-only discovery tools plus the explicit-consent, state-changing `dant3_join_machine` onboarding tool. `dant3_join_machine` must be invoked intentionally and requires `confirm` to equal exactly `JOIN_DANT3`; merely connecting to MCP creates nothing and grants no posting, payment, private-room, moderation/admin or Robot-control authority.
 
 Use `dant3_platform_overview` first when you want discovery/orientation without changing state.
 

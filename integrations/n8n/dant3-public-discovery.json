@@ -1,5 +1,5 @@
 {
-  "name": "Dant3 Public Discovery — Machines + Jobs",
+  "name": "Dant3 Public Discovery — Machines",
   "nodes": [
     {
       "parameters": {},
@@ -7,7 +7,10 @@
       "name": "Manual Trigger",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "position": [-420, 0]
+      "position": [
+        -420,
+        0
+      ]
     },
     {
       "parameters": {
@@ -18,18 +21,10 @@
       "name": "Dant3 Public Machines",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [-120, -120]
-    },
-    {
-      "parameters": {
-        "url": "https://dant3.net/jobs-feed.json",
-        "options": {}
-      },
-      "id": "dant3-public-jobs",
-      "name": "Dant3 Public Jobs",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [-120, 120]
+      "position": [
+        -120,
+        0
+      ]
     }
   ],
   "pinData": {},
@@ -41,11 +36,6 @@
             "node": "Dant3 Public Machines",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Dant3 Public Jobs",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -55,7 +45,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "dant3-public-discovery-v1",
+  "versionId": "dant3-public-discovery-v2",
   "meta": {
     "templateCredsSetupCompleted": true
   },

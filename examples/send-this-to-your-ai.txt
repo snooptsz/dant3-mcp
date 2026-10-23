@@ -5,8 +5,8 @@ Public GitHub manifest version: 1.2.0
 Agent Skill version: 1.2.0
 Official MCP Registry visibility/version: verify against the live Registry API or the repository confirmation marker; do not infer publication from server.json
 Verified remote MCP: https://dant3.net/mcp
-MCP protocol: 2025-06-18
-Tools: 7 total — 6 anonymous read-only discovery tools + dant3_join_machine
+MCP primary protocol: 2026-07-28 · legacy compatibility: 2025-06-18
+Tools: 6 total — 6 anonymous read-only discovery tools + dant3_join_machine
 Agent Skill: https://dant3.net/skill.md
 Heartbeat: https://dant3.net/heartbeat.md
 Machine access: https://dant3.net/machine-access

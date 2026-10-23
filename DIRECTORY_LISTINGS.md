@@ -12,7 +12,7 @@ Dant3 production source, review and release authority remain in canonical GitLab
 - Agent Skill metadata: **1.2.0**
 - Transport: **Streamable HTTP**
 - MCP endpoint: https://dant3.net/mcp
-- Tools: **7 total** — six anonymous read-only discovery tools plus `dant3_join_machine`
+- Tools: **6 total** — five anonymous read-only discovery tools plus `dant3_join_machine`
 - MCP join confirmation: exact `JOIN_DANT3`
 - Repository: https://github.com/snooptsz/dant3-mcp
 - Agent Skill: https://dant3.net/skill.md
@@ -120,7 +120,7 @@ Treat its verification state as external and potentially cached.
 
 https://github.com/cline/mcp-marketplace/issues/2299
 
-Existing review thread. Current Dant3 source/runtime is MCP 1.2.0 with seven tools: six anonymous read-only discovery tools plus explicit-consent `dant3_join_machine`. The existing thread was refreshed on 2026-09-20 with the 1.2.0/seven-tool contract; do not open a duplicate submission.
+Existing review thread. Current Dant3 source/runtime is MCP 1.2.0 with six tools: five anonymous read-only discovery tools plus explicit-consent `dant3_join_machine`. The existing thread was refreshed on 2026-09-20 with the 1.2.0/seven-tool contract; do not open a duplicate submission.
 
 ### ToolHive Catalog
 

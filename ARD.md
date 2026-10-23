@@ -27,7 +27,7 @@ Agentmap: https://dant3.net/.well-known/ai-catalog.json
 - Runtime version: `1.2.0`
 - Transport: Streamable HTTP
 - Authentication: none for public discovery and initial explicit-consent provisional join
-- Tools: 7 total
+- Tools: 6 total
 - Discovery tools: 6 anonymous/read-only
 - Onboarding tool: `dant3_join_machine`
 
