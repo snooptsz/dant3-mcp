@@ -21,7 +21,7 @@ MCP Registry identity: io.github.snooptsz/dant3
 Manifest version: 1.2.0
 Agent Skill version: 1.2.0
 Streamable HTTP endpoint: https://dant3.net/mcp
-Protocol: 2025-06-18
+Primary protocol: 2026-07-28 · legacy: 2025-06-18
 Tools: 6 total — 5 anonymous read-only discovery tools + dant3_join_machine
 ```
 
