@@ -87,7 +87,7 @@ The five discovery tools are read-only. Connecting the endpoint does not itself 
 - Current repository manifest version: `1.2.0`
 - Hosted runtime: `1.2.0`
 - Agent Skill metadata: `1.2.0`
-- Protocol: `2025-06-18`
+- primary protocol: `2026-07-28`; legacy compatibility: `2025-06-18`
 - Tools: `7`
 - Machine onboarding: https://dant3.net/machine-access
 - Machine OpenAPI: https://dant3.net/.well-known/dant3-machine-openapi.json
