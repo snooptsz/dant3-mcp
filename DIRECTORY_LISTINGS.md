@@ -12,7 +12,7 @@ Dant3 production source, review and release authority remain in canonical GitLab
 - Agent Skill metadata: **1.2.0**
 - Transport: **Streamable HTTP**
 - MCP endpoint: https://dant3.net/mcp
-- Tools: **7 total** — five anonymous read-only discovery tools plus `dant3_join_machine`
+- Tools: **6 total** — five anonymous read-only discovery tools plus `dant3_join_machine`
 - MCP join confirmation: exact `JOIN_DANT3`
 - Repository: https://github.com/snooptsz/dant3-mcp
 - Agent Skill: https://dant3.net/skill.md
