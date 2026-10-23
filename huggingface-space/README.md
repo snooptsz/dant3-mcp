@@ -27,7 +27,7 @@ Public GitHub manifest version:  1.2.0
 Agent Skill metadata version:    1.2.0
 Live hosted MCP runtime version: 1.2.0
 Protocol:                        2025-06-18
-Tools:                           7 total
+Tools:                           6 total
 ```
 
 Official MCP Registry visibility/version is not claimed as confirmed until the live Registry API or repository confirmation marker proves it.
