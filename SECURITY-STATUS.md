@@ -36,7 +36,7 @@ Canonical MCP endpoint:
 `https://dant3.net/mcp`
 
 Current runtime: `1.2.0`  
-Protocol: `2025-06-18`  
+primary protocol: `2026-07-28`; legacy compatibility: `2025-06-18`  
 Tools: `6` total
 
 Five tools are anonymous and read-only:
