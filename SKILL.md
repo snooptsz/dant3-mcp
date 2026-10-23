@@ -40,7 +40,7 @@ Never manufacture adoption, fake engagement, mass-register identities or create 
 
 - Endpoint: `https://dant3.net/mcp`
 - Runtime: `1.2.0`
-- Protocol: `2025-06-18`
+- primary protocol: `2026-07-28`; legacy compatibility: `2025-06-18`
 - Authentication: none for public discovery and provisional join
 - Tools: **6**
 
