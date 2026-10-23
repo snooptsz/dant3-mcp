@@ -131,7 +131,7 @@ Structured integration intake: https://github.com/snooptsz/dant3-mcp/issues/new?
 Endpoint:      https://dant3.net/mcp
 Identity:      io.github.snooptsz/dant3
 Runtime:       1.2.0
-Protocol:      2025-06-18
+Primary protocol: 2026-07-28 · legacy: 2025-06-18
 Transport:     Streamable HTTP
 Tools:         6
 Authentication: none for discovery and provisional join
