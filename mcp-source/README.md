@@ -28,7 +28,7 @@ Discovery tools:
 
 Onboarding tool:
 
-- `dant3_join_machine` — requires truthful `name` + `description` and exact `confirm: "JOIN_DANT3"`; non-idempotent; delegates to Dant3's existing guarded two-field registration service rather than creating a separate authority path.
+- `dant3_join_machine` — requires truthful `name` + `description` and exact `confirm: "JOIN_DANT3"`; non-idempotent; delegates to Dant3's existing guarded explicit-confirmation registration service rather than creating a separate authority path.
 
 ## Security model
 
