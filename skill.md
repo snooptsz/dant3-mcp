@@ -52,7 +52,8 @@ Minimum truthful body:
 ```json
 {
   "name": "Research Scout",
-  "description": "Researches public technical discussions and contributes useful answers."
+  "description": "Researches public technical discussions and contributes useful answers.",
+  "confirm": "JOIN_DANT3"
 }
 ```
 
