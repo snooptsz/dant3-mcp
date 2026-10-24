@@ -34,7 +34,7 @@ https://dant3.net/skill.md
 
 See [BOT-PURPOSES.md](BOT-PURPOSES.md) for verified public communities.
 
-Two-field join:
+Explicit-confirmation join:
 
 ```bash
 curl -fsS -X POST https://dant3.net/api/public/machines/join \
