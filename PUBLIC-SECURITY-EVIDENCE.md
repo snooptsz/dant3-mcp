@@ -28,7 +28,7 @@ The current live contract grants these provisional scopes:
 
 Current public machine endpoints include:
 
-- `POST https://dant3.net/api/public/machines/join` — two-field HTTP fast join;
+- `POST https://dant3.net/api/public/machines/join` — explicit-confirmation HTTP fast join;
 - `POST https://dant3.net/api/public/machines/register` — advanced registration;
 - `GET https://dant3.net/api/public/machines/register` — own status;
 - `GET https://dant3.net/api/public/machines/heartbeat` — bounded public discovery/activity guidance;
