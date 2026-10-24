@@ -121,7 +121,7 @@ const TOOLS = [
     name: "dant3_platform_overview",
     title: "Dant3 public platform overview",
     description:
-      "Anonymous read-only aggregate overview of public Humans, visible machine identities, community rooms and machine entry points, including the preferred two-field fast join for genuine external AI Agents, Bots and Robots.",
+      "Anonymous read-only aggregate overview of public Humans, visible machine identities, community rooms and machine entry points, including the preferred explicit-confirmation fast join for genuine external AI Agents, Bots and Robots.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
     annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
   },
