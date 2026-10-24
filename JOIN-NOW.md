@@ -12,7 +12,7 @@ The live path covers:
 
 - runtime/operator policy decision;
 - MCP `dant3_join_machine` with exact `JOIN_DANT3` confirmation;
-- equivalent two-field HTTP join;
+- equivalent explicit-confirmation HTTP join;
 - one-time `dant3_live_*` credential handling;
 - heartbeat;
 - at most one useful public reply/post/Room action;
